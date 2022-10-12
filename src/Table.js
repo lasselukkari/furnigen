@@ -5,14 +5,22 @@ import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber'
 import { Plane } from '@react-three/drei'
 import * as THREE from "three";
 
-function Box({ position, size, textureRotation }) {
+function Box({ position, size, textureRotation, cix, name }) {
   const ref = useRef()
   const [hovered, hover] = useState(false)
-  const [clicked, click] = useState(false)
   const texture = useLoader(THREE.TextureLoader, 'wood-saturated-oak-texture.jpeg')
 
-  if (clicked) {
-
+  function handleClick(e){
+    e.stopPropagation();
+    if(cix){
+      const element = document.createElement("a");
+      const file = new Blob([cix], {type: 'text/plain;charset=utf-8'});
+      element.href = URL.createObjectURL(file);
+      element.download = `${name}.cix`;
+      document.body.appendChild(element);
+      element.click();
+      element.remove();
+    }
   }
 
   return (
@@ -20,8 +28,9 @@ function Box({ position, size, textureRotation }) {
       shadows
       castShadow
       position={position}
+      scale={hovered ? 1.5 :1}
       ref={ref}
-      onClick={(event) => click(!clicked)}
+      onClick={handleClick}
       onPointerOver={(event) => hover(true)}
       onPointerOut={(event) => hover(false)}>
       <boxGeometry args={size} />
@@ -33,7 +42,7 @@ function Box({ position, size, textureRotation }) {
 export default function Table({ tableState }) {
 
   return (
-    <Canvas shadows camera={{ fov: 30, near: 0.1, far: 1000, position: [3.5, 2, 5] }} frameloop="demand" style={{ width: '100%', height: '100%' }}>
+    <Canvas shadows camera={{ fov: 30, near: 0.1, far: 1000, position: [3.5, 2, 5] }} frameloop="demand" style={{ width: '100%', height: '400px' }}>
       <primitive object={new THREE.AxesHelper(10)} />
 
       <spotLight position={[5, 5, 5]} angle={0.7} penumbra={1} castShadow />
@@ -44,9 +53,12 @@ export default function Table({ tableState }) {
         shadow-mapSize-width={512}
       />
 
-      {tableState.map(({ position, dimensions, textureRotation }, key) => {
+      {tableState.map(({ position, dimensions, textureRotation, cix, name }, key) => {
         const factor = 1000;
-        return <Box key={key}
+        return <Box 
+        key={key}
+        name={name}
+        cix={cix}
           position={[
             position.x / factor,
             position.z / factor,
