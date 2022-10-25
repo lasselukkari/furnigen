@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/furnigen/static/css/main.14034d29.css",
-    "main.js": "/furnigen/static/js/main.e4e94cb2.js",
+    "main.js": "/furnigen/static/js/main.29f7c17a.js",
     "index.html": "/furnigen/index.html",
     "main.14034d29.css.map": "/furnigen/static/css/main.14034d29.css.map",
-    "main.e4e94cb2.js.map": "/furnigen/static/js/main.e4e94cb2.js.map"
+    "main.29f7c17a.js.map": "/furnigen/static/js/main.29f7c17a.js.map"
   },
   "entrypoints": [
     "static/css/main.14034d29.css",
-    "static/js/main.e4e94cb2.js"
+    "static/js/main.29f7c17a.js"
   ]
 }
