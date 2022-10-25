@@ -1,0 +1,30 @@
+<html>
+
+<head>
+  <title>JSON Form Example</title>
+</head>
+
+<body>
+  <form id='form'>
+    <input type='text' id='ssid' />
+    <input type='password' id='password' />
+    <input type='submit' value='Submit' />
+  </form>
+</body>
+<script>
+  document.getElementById('form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    fetch('/api/wifi', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        ssid: document.getElementById('ssid').value,
+        password: document.getElementById('password').value
+      })
+    });
+  });
+</script>
+
+</html>
