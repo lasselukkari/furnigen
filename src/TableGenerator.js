@@ -17,16 +17,12 @@ import raw from "raw.macro";
 import template from 'es6-template-strings';
 
 
-const tableTopTemplate = raw('./tableTopTemplate.txt');
-const legTemplate = raw('./legTemplate.txt');
-const apronTemplate = raw('./apronTemplate.txt');
-
 
 export default function TableGenerator() {
 
-  const [tableTopHeigth, setTableTopHeigth] = useState(25);
-  const [tableTopWidth, setTableTopWidth] = useState(800);
-  const [tableTopLength, setTableTopLength] = useState(1200);
+  const [tabletopHeigth, setTabletopHeigth] = useState(25);
+  const [tabletopWidth, setTabletopWidth] = useState(800);
+  const [tabletopLength, setTabletopLength] = useState(1200);
   const [legWidth, setLegSize] = useState(70);
   const [legHeight, setLegHeight] = useState(725);
   const [legMargin, setLegMargin] = useState(55);
@@ -55,8 +51,8 @@ export default function TableGenerator() {
       BCF: 8, // tarkista
     }
   }
-  const halfTopWidth = tableTopWidth / 2;
-  const halfTopLength = tableTopLength / 2;
+  const halfTopWidth = tabletopWidth / 2;
+  const halfTopLength = tabletopLength / 2;
   const halfApronWidth = apronWidth / 2;
   const halfApronHeight = apronHeight / 2;
   const halfLegWidth = legWidth / 2;
@@ -75,137 +71,10 @@ export default function TableGenerator() {
   const apronsSlotCutX1 = 20;
   const apronsSlotCutX2 = apronHeight - halfApronWidth
   const apronPinLength = apronSlotCutDepth - 1;
+  const apron1Length = tabletopLength - (twoLegWidthAndMargin) + (2 * (apronPinLength));
+  const apron2Length = tabletopWidth - (twoLegWidthAndMargin) + (2 * (apronPinLength));
 
 
-  const apron1Length = tableTopLength - (twoLegWidthAndMargin) + (2 * (apronPinLength));
-  const apron2Length = tableTopWidth - (twoLegWidthAndMargin) + (2 * (apronPinLength));
-
-  const legCix = () => template(legTemplate, { legWidth, legHeight, apronWidth, apronHeight, apronMargin, apronSlotCutDistance, apronSlotCutDepth, apronsSlotCutX1, apronsSlotCutX2, tool });
-  const tableTopCix = () => template(tableTopTemplate,{ tableTopHeigth, tableTopWidth, tableTopLength });
-  const apron1Cix = () => template(apronTemplate, { apronHeight, apronWidth, apronSlotCutDistance, apronPinLength, apronsSlotCutX1, apronsSlotCutX2, apronLength: apron1Length });
-  const apron2Cix = () => template(apronTemplate, { apronHeight, apronWidth, apronSlotCutDistance, apronPinLength, apronsSlotCutX1, apronsSlotCutX2, apronLength: apron2Length });
-
-  const aprons = [
-    {
-      name: 'Apron 1',
-      position: {
-        x: 0,
-        y: legMargin + apronCenterMargin - halfTopLength,
-        z: halfLegHeight - halfApronHeight
-      },
-      dimensions: { x: tableTopWidth - twoLegWidthAndMargin, y: apronWidth, z: apronHeight },
-      textureRotation: rotation,
-    }, {
-      name: 'Apron 2',
-      position: {
-        x: 0,
-        y: halfTopLength - apronCenterMargin - legMargin,
-        z: halfLegHeight - halfApronHeight
-      },
-      dimensions: { x: tableTopWidth - twoLegWidthAndMargin, y: apronWidth, z: apronHeight },
-      textureRotation: rotation,
-    }, {
-      name: 'Apron 3',
-      position: {
-        x: legMargin + apronCenterMargin - halfTopWidth,
-        y: 0,
-        z: halfLegHeight - halfApronHeight
-      },
-      dimensions: {
-        x: apronWidth,
-        y: tableTopLength - twoLegWidthAndMargin,
-        z: apronHeight
-      },
-      textureRotation: rotation,
-    }, {
-      name: 'Apron 4',
-      position: {
-        x: tableTopWidth - legMargin - apronCenterMargin - halfTopWidth,
-        y: 0,
-        z: halfLegHeight - halfApronHeight
-      },
-      dimensions: { x: apronWidth, y: tableTopLength - twoLegWidthAndMargin, z: apronHeight },
-      textureRotation: rotation,
-    }
-  ]
-
-  const tableState = [{
-    name: 'Table Top',
-    position: { x: 0, y: 0, z: halfLegHeight + (tableTopHeigth / 2) },
-    dimensions: { x: tableTopWidth, y: tableTopLength, z: tableTopHeigth },
-  }, {
-    name: 'Leg 1',
-    position: {
-      x: -halfTopWidth + halfLegWidth + legMargin,
-      y: legCenterMargin - halfTopLength,
-      z: 0
-    },
-    dimensions: { x: legWidth, y: legWidth, z: legHeight },
-  }, {
-    name: 'Leg 2',
-    position: {
-      x: tableTopWidth - legCenterMargin - halfTopWidth,
-      y: legCenterMargin - halfTopLength,
-      z: 0
-    },
-    dimensions: { x: legWidth, y: legWidth, z: legHeight },
-  }, {
-    name: 'Leg 3',
-    position: {
-      x: legCenterMargin - halfTopWidth,
-      y: tableTopLength - legCenterMargin - halfTopLength,
-      z: 0
-    },
-    dimensions: { x: legWidth, y: legWidth, z: legHeight },
-  }, {
-    name: 'Leg 4',
-    position: {
-      x: tableTopWidth - legCenterMargin - halfTopWidth,
-      y: tableTopLength - legCenterMargin - halfTopLength,
-      z: 0
-    },
-    dimensions: { x: legWidth, y: legWidth, z: legHeight },
-  }, {
-    name: 'Apron 1',
-    position: {
-      x: 0,
-      y: legMargin + apronCenterMargin - halfTopLength,
-      z: halfLegHeight - halfApronHeight
-    },
-    dimensions: { x: tableTopWidth - twoLegWidthAndMargin, y: apronWidth, z: apronHeight },
-    textureRotation: rotation,
-  }, {
-    name: 'Apron 2',
-    position: {
-      x: 0,
-      y: halfTopLength - apronCenterMargin - legMargin,
-      z: halfLegHeight - halfApronHeight
-    },
-    dimensions: { x: tableTopWidth - twoLegWidthAndMargin, y: apronWidth, z: apronHeight },
-    textureRotation: rotation,
-  }, {
-    name: 'Apron 3',
-    position: {
-      x: legMargin + apronCenterMargin - halfTopWidth,
-      y: 0,
-      z: halfLegHeight - halfApronHeight
-    },
-    dimensions: {
-      x: apronWidth,
-      y: tableTopLength - twoLegWidthAndMargin,
-      z: apronHeight
-    },
-    textureRotation: rotation,
-  }, {
-    name: 'Apron 4',
-    position: {
-      x: tableTopWidth - legMargin - apronCenterMargin - halfTopWidth,
-      y: 0,
-      z: halfLegHeight - halfApronHeight
-    },
-    dimensions: { x: apronWidth, y: tableTopLength - twoLegWidthAndMargin, z: apronHeight },
-    textureRotation: rotation,
-  }];
 
   function handleClick(name, cix) {
     if (cix) {
@@ -225,7 +94,17 @@ export default function TableGenerator() {
       <br/>
       <Row>
         <Col lg={8}>
-          <Table2 tableState={tableState} aprons={aprons}/>
+          <Table2 
+          tabletopHeigth={tabletopHeigth}
+          tabletopWidth={tabletopWidth}
+          tabletopLength={tabletopLength}
+          legWidth={legWidth}
+          legHeight={legHeight}
+          legMargin={legMargin}
+          apronWidth={apronWidth}
+          apronHeight={apronHeight}
+          apronMargin={apronMargin}
+          />
         </Col>
         <Col lg={4}>
           <Accordion defaultActiveKey="0">
@@ -234,19 +113,19 @@ export default function TableGenerator() {
               <Accordion.Body>
                 <Form>
                   <Form.Label>
-                    Thickness: {tableTopHeigth}
+                    Thickness: {tabletopHeigth}
                   </Form.Label>
-                  <Form.Range type="number" min="12" max="40" value={tableTopHeigth} onChange={(e) => setTableTopHeigth(Number(e.target.value))} />
+                  <Form.Range type="number" min="12" max="40" value={tabletopHeigth} onChange={(e) => setTabletopHeigth(Number(e.target.value))} />
 
                   <Form.Label>
-                    Width: {tableTopWidth}
+                    Width: {tabletopWidth}
                   </Form.Label>
-                  <Form.Range type="number" min="400" max="1200" value={tableTopWidth} onChange={(e) => setTableTopWidth(Number(e.target.value))} />
+                  <Form.Range type="number" min="400" max="1200" value={tabletopWidth} onChange={(e) => setTabletopWidth(Number(e.target.value))} />
 
                   <Form.Label>
-                    Length: {tableTopLength}
+                    Length: {tabletopLength}
                   </Form.Label>
-                  <Form.Range type="number" min="600" max="3600" value={tableTopLength} onChange={(e) => setTableTopLength(Number(e.target.value))} />
+                  <Form.Range type="number" min="600" max="3600" value={tabletopLength} onChange={(e) => setTabletopLength(Number(e.target.value))} />
                 </Form>
               </Accordion.Body>
             </Accordion.Item>
@@ -314,18 +193,18 @@ export default function TableGenerator() {
             <td><Button
               size={"sm"}
               variant="outline-primary"
-              onClick={(e) => handleClick(`TableTop_${tableTopLength}_${tableTopWidth}_${tableTopHeigth}`, tableTopCix)}>
+              onClick={(e) => handleClick(`TableTop_${tabletopLength}_${tabletopWidth}_${tabletopHeigth}`)}>
               TableTop.cix
             </Button></td>
             <td>1</td>
-            <td>{(tableTopLength + (2 * tyovara))} * {(tableTopWidth + (2 * tyovara))} * {tableTopHeigth}</td>
+            <td>{(tabletopLength + (2 * tyovara))} * {(tabletopWidth + (2 * tyovara))} * {tabletopHeigth}</td>
           </tr>
           <tr>
             <td>2.</td>
             <td><Button
               size={"sm"}
               variant="outline-primary"
-              onClick={(e) => handleClick(`Leg_${legHeight}_${legWidth}_${legWidth}`, legCix)}>
+              onClick={(e) => handleClick(`Leg_${legHeight}_${legWidth}_${legWidth}` )}>
               Leg.cix
             </Button></td>
             <td>4</td>
@@ -337,11 +216,11 @@ export default function TableGenerator() {
             <td><Button
               size={"sm"}
               variant="outline-primary"
-              onClick={(e) => handleClick(`Apron 1_${tableTopLength - (twoLegWidthAndMargin)}_${apronHeight}_${apronWidth}`, apron1Cix)}>
+              onClick={(e) => handleClick(`Apron 1_${tabletopLength - (twoLegWidthAndMargin)}_${apronHeight}_${apronWidth}`)}>
               Apron 1.cix
             </Button></td>
             <td>2</td>
-            <td>{tableTopLength - (twoLegWidthAndMargin) + ((apronSlotCutDepth - 2) * 2) + (2 * tyovara)} * {apronHeight + (tyovara * 2)} * {apronWidth}</td>
+            <td>{tabletopLength - (twoLegWidthAndMargin) + ((apronSlotCutDepth - 2) * 2) + (2 * tyovara)} * {apronHeight + (tyovara * 2)} * {apronWidth}</td>
 
           </tr>
           <tr>
@@ -349,11 +228,11 @@ export default function TableGenerator() {
             <td><Button
               size={"sm"}
               variant="outline-primary"
-              onClick={(e) => handleClick(`Apron 2_${tableTopWidth - (twoLegWidthAndMargin)}_${apronHeight}_${apronWidth}`, apron2Cix)}>
+              onClick={(e) => handleClick(`Apron 2_${tabletopWidth - (twoLegWidthAndMargin)}_${apronHeight}_${apronWidth}`)}>
               Apron 2.cix
             </Button></td>
             <td>2</td>
-            <td>{tableTopWidth - (twoLegWidthAndMargin) + ((apronSlotCutDepth - 2) * 2) + (2 * tyovara)} * {apronHeight + (tyovara * 2)} * {apronWidth}</td>
+            <td>{tabletopWidth - (twoLegWidthAndMargin) + ((apronSlotCutDepth - 2) * 2) + (2 * tyovara)} * {apronHeight + (tyovara * 2)} * {apronWidth}</td>
 
           </tr>
 

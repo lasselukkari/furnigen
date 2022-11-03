@@ -1,0 +1,174 @@
+/*
+PARAM,NAME=LAY,VALUE="Layer 0"
+  PARAM,NAME=ID,VALUE="P1021"
+  PARAM,NAME=GID,VALUE="G1001.1001"
+  PARAM,NAME=SIL,VALUE=""
+  PARAM,NAME=Z,VALUE=0
+  PARAM,NAME=DP,VALUE=5
+  PARAM,NAME=TH,VALUE=0
+  PARAM,NAME=THR,VALUE=1
+  PARAM,NAME=TTK,VALUE=0
+  PARAM,NAME=CRC,VALUE=6
+  PARAM,NAME=RV,VALUE=1
+  PARAM,NAME=CKA,VALUE=2
+  PARAM,NAME=AZ,VALUE=0
+  PARAM,NAME=OPT,VALUE=1
+  PARAM,NAME=RSP,VALUE=6000
+  PARAM,NAME=IOS,VALUE=0
+  PARAM,NAME=WSP,VALUE=14000
+  PARAM,NAME=DSP,VALUE=2500
+  PARAM,NAME=OVM,VALUE=0
+  PARAM,NAME=DIN,VALUE=100
+  PARAM,NAME=DOU,VALUE=100
+  PARAM,NAME=TOS,VALUE=1
+  PARAM,NAME=VTR,VALUE=2
+  PARAM,NAME=GIP,VALUE=1
+  PARAM,NAME=TNM,VALUE="SAHA300"
+  PARAM,NAME=SPI,VALUE=""
+  PARAM,NAME=BFC,VALUE=0
+  PARAM,NAME=SHT,VALUE=0
+  PARAM,NAME=SHP,VALUE=5
+  PARAM,NAME=SHD,VALUE=0
+  PARAM,NAME=BRC,VALUE=0
+  PARAM,NAME=BDR,VALUE=1
+  PARAM,NAME=PRV,VALUE=1
+  PARAM,NAME=NRV,VALUE=0
+  PARAM,NAME=DVR,VALUE=0
+  PARAM,NAME=KDT,VALUE=0
+  PARAM,NAME=COPRES,VALUE=0
+  PARAM,NAME=RMD,VALUE=0
+  PARAM,NAME=BTT,VALUE=0.1
+*/
+
+class CUT_GEO {
+	constructor({
+    LAY = 'Layer 0',
+    ID = 0,
+    GID = '',
+    SIL = '',
+    Z = 0,
+    DP = 0,
+    TH = 0,
+    THR = 0,
+    TTK = 0,
+    CRC = 0,
+    RV = 0,
+    CKA = 0,
+    AZ = 0,
+    OPT = 0,
+    RSP = 0,
+    IOS = 0,
+    WSP = 0,
+    DSP = 0,
+    OVM = 0,
+    DIN = 0,
+    DOU = 0,
+    TOS = 0,
+    VTR = 0,
+    GIP = 0,
+    TNM = '',
+    SPI = '',
+    BFC = 0,
+    SHT = 0,
+    SHP = 0,
+    SHD = 0,
+    BRC = 0,
+    BDR = 0,
+    PRV = 0,
+    NRV = 0,
+    DVR = 0,
+    KDT = 0,
+    COPRES = 0,
+    RMD = 0,
+    BTT = 0
+  }) {
+		this.LAY = LAY;
+		this.ID = ID;
+		this.GID = GID;
+		this.SIL = SIL;
+		this.Z = Z;
+		this.DP = DP;
+		this.TH = TH;
+		this.THR = THR;
+		this.TTK = TTK;
+		this.CRC = CRC;
+		this.RV = RV;
+		this.CKA = CKA;
+		this.AZ = AZ;
+		this.OPT = OPT;
+		this.RSP = RSP;
+		this.IOS = IOS;
+		this.WSP = WSP;
+		this.DSP = DSP;
+		this.OVM = OVM;
+		this.DIN = DIN;
+		this.DOU = DOU;
+		this.TOS = TOS;
+		this.VTR = VTR;
+		this.GIP = GIP;
+		this.TNM = TNM;
+		this.SPI = SPI;
+		this.BFC = BFC;
+		this.SHT = SHT;
+		this.SHP = SHP;
+		this.SHD = SHD;
+		this.BRC = BRC;
+		this.BDR = BDR;
+		this.PRV = PRV;
+		this.NRV = NRV;
+		this.DVR = DVR;
+		this.KDT = KDT;
+		this.COPRES = COPRES;
+		this.RMD = RMD;
+		this.BTT = BTT;
+	}
+
+	toMacro() {
+		return `
+BEGIN MACRO
+\tNAME=CUT_GEO
+\tPARAM,NAME=LAY,VALUE="${this.LAY}"
+\tPARAM,NAME=ID,VALUE="${this.ID}"
+\tPARAM,NAME=GID,VALUE="${this.GID}"
+\tPARAM,NAME=SIL,VALUE="${this.SIL}"
+\tPARAM,NAME=Z,VALUE=${this.Z}
+\tPARAM,NAME=DP,VALUE=${this.DP}
+\tPARAM,NAME=TH,VALUE=${this.TH}
+\tPARAM,NAME=THR,VALUE=${this.THR}
+\tPARAM,NAME=TTK,VALUE=${this.TTK}
+\tPARAM,NAME=CRC,VALUE=${this.CRC}
+\tPARAM,NAME=RV,VALUE=${this.RV}
+\tPARAM,NAME=CKA,VALUE=${this.CKA}
+\tPARAM,NAME=AZ,VALUE=${this.AZ}
+\tPARAM,NAME=OPT,VALUE=${this.OPT}
+\tPARAM,NAME=RSP,VALUE=${this.RSP}
+\tPARAM,NAME=IOS,VALUE=${this.IOS}
+\tPARAM,NAME=WSP,VALUE=${this.WSP}
+\tPARAM,NAME=DSP,VALUE=${this.DSP}
+\tPARAM,NAME=OVM,VALUE=${this.OVM}
+\tPARAM,NAME=DIN,VALUE=${this.DIN}
+\tPARAM,NAME=DOU,VALUE=${this.DOU}
+\tPARAM,NAME=TOS,VALUE=${this.TOS}
+\tPARAM,NAME=VTR,VALUE=${this.VTR}
+\tPARAM,NAME=GIP,VALUE=${this.GIP}
+\tPARAM,NAME=TNM,VALUE="${this.TNM}"
+\tPARAM,NAME=SPI,VALUE="${this.SPI}"
+\tPARAM,NAME=BFC,VALUE=${this.BFC}
+\tPARAM,NAME=SHT,VALUE=${this.SHT}
+\tPARAM,NAME=SHP,VALUE=${this.SHP}
+\tPARAM,NAME=SHD,VALUE=${this.SHD}
+\tPARAM,NAME=BRC,VALUE=${this.BRC}
+\tPARAM,NAME=BDR,VALUE=${this.BDR}
+\tPARAM,NAME=PRV,VALUE=${this.PRV}
+\tPARAM,NAME=NRV,VALUE=${this.NRV}
+\tPARAM,NAME=DVR,VALUE=${this.DVR}
+\tPARAM,NAME=KDT,VALUE=${this.KDT}
+\tPARAM,NAME=COPRES,VALUE=${this.COPRES}
+\tPARAM,NAME=RMD,VALUE=${this.RMD}
+\tPARAM,NAME=BTT,VALUE=${this.BTT}
+END MACRO
+`;
+	}
+}
+
+module.exports = CUT_GEO;

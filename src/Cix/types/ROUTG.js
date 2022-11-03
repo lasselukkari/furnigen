@@ -1,0 +1,362 @@
+/*
+
+BEGIN MACRO
+	NAME=ROUTG
+	PARAM,NAME=LAY,VALUE="Layer 0"
+	PARAM,NAME=ID,VALUE="P1091"
+	PARAM,NAME=GID,VALUE="G1001.1083"
+	PARAM,NAME=SIL,VALUE=""
+	PARAM,NAME=Z,VALUE=0
+	PARAM,NAME=DP,VALUE=10.123
+	PARAM,NAME=DIA,VALUE=0
+	PARAM,NAME=THR,VALUE=0
+	PARAM,NAME=RV,VALUE=0
+	PARAM,NAME=CRC,VALUE=0
+	PARAM,NAME=CKA,VALUE=3
+	PARAM,NAME=AZ,VALUE=0
+	PARAM,NAME=AR,VALUE=0
+	PARAM,NAME=OPT,VALUE=1
+	PARAM,NAME=RSP,VALUE=18000
+	PARAM,NAME=IOS,VALUE=0
+	PARAM,NAME=WSP,VALUE=10000
+	PARAM,NAME=DSP,VALUE=8000
+	PARAM,NAME=IMS,VALUE=0
+	PARAM,NAME=VTR,VALUE=2
+	PARAM,NAME=DVR,VALUE=0
+	PARAM,NAME=INCSTP,VALUE=0
+	PARAM,NAME=OTR,VALUE=1
+	PARAM,NAME=SVR,VALUE=0
+	PARAM,NAME=COF,VALUE=0
+	PARAM,NAME=DOF,VALUE=0
+	PARAM,NAME=BDR,VALUE=1
+	PARAM,NAME=TIN,VALUE=0
+	PARAM,NAME=CIN,VALUE=1
+	PARAM,NAME=AIN,VALUE=90
+	PARAM,NAME=GIN,VALUE=0
+	PARAM,NAME=TLI,VALUE=0
+	PARAM,NAME=TQI,VALUE=0
+	PARAM,NAME=TBI,VALUE=0
+	PARAM,NAME=DIN,VALUE=0
+	PARAM,NAME=TOU,VALUE=0
+	PARAM,NAME=COU,VALUE=1
+	PARAM,NAME=AOU,VALUE=90
+	PARAM,NAME=GOU,VALUE=0
+	PARAM,NAME=TBO,VALUE=0
+	PARAM,NAME=TLO,VALUE=0
+	PARAM,NAME=TQO,VALUE=0
+	PARAM,NAME=DOU,VALUE=0
+	PARAM,NAME=PRP,VALUE=100
+	PARAM,NAME=SDS,VALUE=0
+	PARAM,NAME=SDSF,VALUE=2000
+	PARAM,NAME=UDT,VALUE=0
+	PARAM,NAME=TDT,VALUE=""
+	PARAM,NAME=DDT,VALUE=5
+	PARAM,NAME=SDT,VALUE=0
+	PARAM,NAME=IDT,VALUE=20
+	PARAM,NAME=FDT,VALUE=80
+	PARAM,NAME=RDT,VALUE=60
+	PARAM,NAME=CRR,VALUE=0
+	PARAM,NAME=GIP,VALUE=1
+	PARAM,NAME=OVM,VALUE=0
+	PARAM,NAME=SWI,VALUE=0
+	PARAM,NAME=BLW,VALUE=0
+	PARAM,NAME=TOS,VALUE=1
+	PARAM,NAME=TNM,VALUE="SPIRAALI-10"
+	PARAM,NAME=TTP,VALUE=0
+	PARAM,NAME=SPI,VALUE=""
+	PARAM,NAME=BFC,VALUE=1
+	PARAM,NAME=SHT,VALUE=0
+	PARAM,NAME=SHP,VALUE=9
+	PARAM,NAME=SHD,VALUE=0
+	PARAM,NAME=PRS,VALUE=0
+	PARAM,NAME=NEBS,VALUE=0
+	PARAM,NAME=ETB,VALUE=0
+	PARAM,NAME=FXD,VALUE=0
+	PARAM,NAME=FXDA,VALUE=0
+	PARAM,NAME=KDT,VALUE=0
+	PARAM,NAME=EML,VALUE=0
+	PARAM,NAME=CKT,VALUE=0
+	PARAM,NAME=ETG,VALUE=0
+	PARAM,NAME=ETGT,VALUE=0.1
+	PARAM,NAME=AJT,VALUE=0
+	PARAM,NAME=ION,VALUE=0
+	PARAM,NAME=LUBMNZ,VALUE=0
+	PARAM,NAME=LPR,VALUE=1
+	PARAM,NAME=LNG,VALUE=0
+	PARAM,NAME=ZS,VALUE=0
+	PARAM,NAME=ZE,VALUE=0
+	PARAM,NAME=RDIN,VALUE=0
+	PARAM,NAME=COPRES,VALUE=0
+END MACRO
+
+*/
+
+class ROUTG {
+	constructor({
+        LAY = 'Layer 0',
+        ID = '',
+        GID = '',
+        SIL = '',
+        Z = 0,
+        DP = 0,
+        DIA = 0,
+        THR = 0,
+        RV = 0,
+        CRC = 0,
+        CKA = 0,
+        AZ = 0,
+        AR = 0,
+        OPT = 0,
+        RSP = 0,
+        IOS = 0,
+        WSP = 0,
+        DSP = 0,
+        IMS = 0,
+        VTR = 0,
+        DVR = 0,
+        INCSTP = 0,
+        OTR = 0,
+        SVR = 0,
+        COF = 0,
+        DOF = 0,
+        BDR,
+        TIN = 0,
+        CIN = 0,
+        AIN = 0,
+        GIN = 0,
+        TLI = 0,
+        TQI = 0,
+        TBI = 0,
+        DIN = 0,
+        TOU = 0,
+        COU = 0,
+        AOU = 0,
+        GOU = 0,
+        TBO = 0,
+        TLO = 0,
+        TQO = 0,
+        DOU = 0,
+        PRP = 0,
+        SDS = 0,
+        SDSF = 0,
+        UDT = 0,
+        TDT = '',
+        DDT = 0,
+        SDT = 0,
+        IDT = 0,
+        FDT = 0,
+        RDT = 0,
+        CRR = 0,
+        GIP = 0,
+        OVM = 0,
+        SWI = 0,
+        BLW = 0,
+        TOS = 1,
+        TNM = '',
+        TTP = 0,
+        SPI = '',
+        BFC = 1,
+        SHT = 0,
+        SHP = 3,
+        SHD = 0,
+        PRS = 0,
+        NEBS = 0,
+        ETB = 0,
+        FXD = 0,
+        FXDA = 0,
+        KDT = 0,
+        EML = 0,
+        CKT = 0,
+        ETG = 0,
+        ETGT = 0.1,
+        AJT = 0,
+        ION = 0,
+        LUBMNZ = 0,
+        LPR = 0,
+        LNG = 0,
+        ZS = 0,
+        ZE = 0,
+        RDIN = 0,
+        COPRES = 0
+    }) {
+		this.LAY = LAY;
+		this.ID = ID;
+		this.GID = GID;
+		this.SIL = SIL;
+		this.Z = Z;
+		this.DP = DP;
+		this.DIA = DIA;
+		this.THR = THR;
+		this.RV = RV;
+		this.CRC = CRC;
+		this.CKA = CKA;
+		this.AZ = AZ;
+		this.AR = AR;
+		this.OPT = OPT;
+		this.RSP = RSP;
+		this.IOS = IOS;
+		this.WSP = WSP;
+		this.DSP = DSP;
+		this.IMS = IMS;
+		this.VTR = VTR;
+		this.DVR = DVR;
+		this.INCSTP = INCSTP;
+		this.OTR = OTR;
+		this.SVR = SVR;
+		this.COF = COF;
+		this.DOF = DOF;
+        this.BDR = BDR;
+		this.TIN = TIN;
+		this.CIN = CIN;
+		this.AIN = AIN;
+		this.GIN = GIN;
+		this.TLI = TLI;
+		this.TQI = TQI;
+		this.TBI = TBI;
+		this.DIN = DIN;
+		this.TOU = TOU;
+		this.COU = COU;
+		this.AOU = AOU;
+		this.GOU = GOU;
+		this.TBO = TBO;
+		this.TLO = TLO;
+		this.TQO = TQO;
+		this.DOU = DOU;
+		this.PRP = PRP;
+		this.SDS = SDS;
+		this.SDSF = SDSF;
+		this.UDT = UDT;
+		this.TDT = TDT;
+		this.DDT = DDT;
+		this.SDT = SDT;
+		this.IDT = IDT;
+		this.FDT = FDT;
+		this.RDT = RDT;
+		this.CRR = CRR;
+		this.GIP = GIP;
+		this.OVM = OVM;
+		this.SWI = SWI;
+		this.BLW = BLW;
+		this.TOS = TOS;
+		this.TNM = TNM;
+		this.TTP = TTP;
+		this.SPI = SPI;
+		this.BFC = BFC;
+		this.SHT = SHT;
+		this.SHP = SHP;
+		this.SHD = SHD;
+		this.PRS = PRS;
+		this.NEBS = NEBS;
+		this.ETB = ETB;
+		this.FXD = FXD;
+		this.FXDA = FXDA;
+		this.KDT = KDT;
+		this.EML = EML;
+		this.CKT = CKT;
+		this.ETG = ETG;
+		this.ETGT = ETGT;
+		this.AJT = AJT;
+		this.ION = ION;
+		this.LUBMNZ = LUBMNZ;
+		this.LPR = LPR;
+		this.LNG = LNG;
+		this.ZS = ZS;
+		this.ZE = ZE;
+		this.RDIN = RDIN;
+		this.COPRES = COPRES;
+	}
+
+	toMacro() {
+		return `
+BEGIN MACRO
+\tNAME=ROUTG        
+\tPARAM,NAME=LAY,VALUE="${this.LAY}"
+\tPARAM,NAME=ID,VALUE="${this.ID}"
+\tPARAM,NAME=GID,VALUE="${this.GID}"
+\tPARAM,NAME=SIL,VALUE="${this.SIL}"
+\tPARAM,NAME=Z,VALUE=${this.Z}
+\tPARAM,NAME=DP,VALUE=${this.DP}
+\tPARAM,NAME=DIA,VALUE=${this.DIA}
+\tPARAM,NAME=THR,VALUE=${this.THR}
+\tPARAM,NAME=RV,VALUE=${this.RV}
+\tPARAM,NAME=CRC,VALUE=${this.CRC}
+\tPARAM,NAME=CKA,VALUE=${this.CKA}
+\tPARAM,NAME=AZ,VALUE=${this.AZ}
+\tPARAM,NAME=AR,VALUE=${this.AR}
+\tPARAM,NAME=OPT,VALUE=${this.OPT}
+\tPARAM,NAME=RSP,VALUE=${this.RSP}
+\tPARAM,NAME=IOS,VALUE=${this.IOS}
+\tPARAM,NAME=WSP,VALUE=${this.WSP}
+\tPARAM,NAME=DSP,VALUE=${this.DSP}
+\tPARAM,NAME=IMS,VALUE=${this.IMS}
+\tPARAM,NAME=VTR,VALUE=${this.VTR}
+\tPARAM,NAME=DVR,VALUE=${this.DVR}
+\tPARAM,NAME=INCSTP,VALUE=${this.INCSTP}
+\tPARAM,NAME=OTR,VALUE=${this.OTR}
+\tPARAM,NAME=SVR,VALUE=${this.SVR}
+\tPARAM,NAME=COF,VALUE=${this.COF}
+\tPARAM,NAME=DOF,VALUE=${this.DOF}${this.BDR ? `\n\tPARAM,NAME=BDR,VALUE=${this.BDR}` : ''}
+\tPARAM,NAME=TIN,VALUE=${this.TIN}
+\tPARAM,NAME=CIN,VALUE=${this.CIN}
+\tPARAM,NAME=AIN,VALUE=${this.AIN}
+\tPARAM,NAME=GIN,VALUE=${this.GIN}
+\tPARAM,NAME=TLI,VALUE=${this.TLI}
+\tPARAM,NAME=TQI,VALUE=${this.TQI}
+\tPARAM,NAME=TBI,VALUE=${this.TBI}
+\tPARAM,NAME=DIN,VALUE=${this.DIN}
+\tPARAM,NAME=TOU,VALUE=${this.TOU}
+\tPARAM,NAME=COU,VALUE=${this.COU}
+\tPARAM,NAME=AOU,VALUE=${this.AOU}
+\tPARAM,NAME=GOU,VALUE=${this.GOU}
+\tPARAM,NAME=TBO,VALUE=${this.TBO}
+\tPARAM,NAME=TLO,VALUE=${this.TLO}
+\tPARAM,NAME=TQO,VALUE=${this.TQO}
+\tPARAM,NAME=DOU,VALUE=${this.DOU}
+\tPARAM,NAME=PRP,VALUE=${this.PRP}
+\tPARAM,NAME=SDS,VALUE=${this.SDS}
+\tPARAM,NAME=SDSF,VALUE=${this.SDSF}
+\tPARAM,NAME=UDT,VALUE=${this.UDT}
+\tPARAM,NAME=TDT,VALUE="${this.TDT}"
+\tPARAM,NAME=DDT,VALUE=${this.DDT}
+\tPARAM,NAME=SDT,VALUE=${this.SDT}
+\tPARAM,NAME=IDT,VALUE=${this.IDT}
+\tPARAM,NAME=FDT,VALUE=${this.FDT}
+\tPARAM,NAME=RDT,VALUE=${this.RDT}
+\tPARAM,NAME=CRR,VALUE=${this.CRR}
+\tPARAM,NAME=GIP,VALUE=${this.GIP}
+\tPARAM,NAME=OVM,VALUE=${this.OVM}
+\tPARAM,NAME=SWI,VALUE=${this.SWI}
+\tPARAM,NAME=BLW,VALUE=${this.BLW}
+\tPARAM,NAME=TOS,VALUE=${this.TOS}
+\tPARAM,NAME=TNM,VALUE="${this.TNM}"
+\tPARAM,NAME=TTP,VALUE=${this.TTP}
+\tPARAM,NAME=SPI,VALUE="${this.SPI}"
+\tPARAM,NAME=BFC,VALUE=${this.BFC}
+\tPARAM,NAME=SHT,VALUE=${this.SHT}
+\tPARAM,NAME=SHP,VALUE=${this.SHP}
+\tPARAM,NAME=SHD,VALUE=${this.SHD}
+\tPARAM,NAME=PRS,VALUE=${this.PRS}
+\tPARAM,NAME=NEBS,VALUE=${this.NEBS}
+\tPARAM,NAME=ETB,VALUE=${this.ETB}
+\tPARAM,NAME=FXD,VALUE=${this.FXD}
+\tPARAM,NAME=FXDA,VALUE=${this.FXDA}
+\tPARAM,NAME=KDT,VALUE=${this.KDT}
+\tPARAM,NAME=EML,VALUE=${this.EML}
+\tPARAM,NAME=CKT,VALUE=${this.CKT}
+\tPARAM,NAME=ETG,VALUE=${this.ETG}
+\tPARAM,NAME=ETGT,VALUE=${this.ETGT}
+\tPARAM,NAME=AJT,VALUE=${this.AJT}
+\tPARAM,NAME=ION,VALUE=${this.ION}
+\tPARAM,NAME=LUBMNZ,VALUE=${this.LUBMNZ}
+\tPARAM,NAME=LPR,VALUE=${this.LPR}
+\tPARAM,NAME=LNG,VALUE=${this.LNG}
+\tPARAM,NAME=ZS,VALUE=${this.ZS}
+\tPARAM,NAME=ZE,VALUE=${this.ZE}
+\tPARAM,NAME=RDIN,VALUE=${this.RDIN}
+\tPARAM,NAME=COPRES,VALUE=${this.COPRES}
+END MACRO
+`;
+	}
+}
+
+module.exports = ROUTG;

@@ -6,7 +6,7 @@ import TableGenerator from './TableGenerator'
 
 export const routes = [
   { path: '/basics',
-    component: Basics,
+    component: TableGenerator,
     title: 'Basics',
     file: '1.Basics.js',
     desc: 'Basics Routing example'
