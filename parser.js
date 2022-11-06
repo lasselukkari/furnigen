@@ -4,9 +4,6 @@ const P = require('parsimmon');
 const reduceValues = (values, filterDefaults) => {
   return values.reduce((acc, [name, value]) => {
     if (filterDefaults) {
-      if (!value) {
-        return acc;
-      }
       if (name === 'LAY' && value === 'Layer 0') {
         return acc;
       }
@@ -15,6 +12,10 @@ const reduceValues = (values, filterDefaults) => {
       }
 
       if (name === 'ETGT' && value === 0.1) {
+        return acc;
+      }
+
+      if (!value) {
         return acc;
       }
     }
@@ -158,10 +159,10 @@ fs.writeFile('./result.cix', cix.toMacro());
 
 async function example() {
   try {
-    const file = await fs.readFile('./test.cix', { encoding: 'utf8' });
+    const file = await fs.readFile(process.argv[2], { encoding: 'utf8' });
     const result = parser.all.tryParse(file);
 
-    await fs.writeFile('./test.js', toCode(result));
+    await fs.writeFile(process.argv[3], toCode(result));
   } catch (err) {
     console.log(err);
   }

@@ -4,6 +4,7 @@
   "homespage": "https://lasselukkari.github.io/furnigen",
   "private": true,
   "dependencies": {
+    "@react-three/csg": "^1.1.5",
     "@react-three/drei": "^9.32.4",
     "@react-three/fiber": "^8.8.7",
     "@react-three/xr": "^5.0.4",
@@ -15,6 +16,7 @@
     "es6-template-strings": "^2.0.1",
     "eta": "^1.12.3",
     "handlebars": "^4.7.7",
+    "parsimmon": "^1.18.1",
     "raw.macro": "^0.6.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",

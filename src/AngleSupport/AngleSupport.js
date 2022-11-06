@@ -32,37 +32,37 @@ export default function AngleSupport({
     const textureClone = texture.clone();
 
     textureClone.wrapS = textureClone.wrapT = THREE.RepeatWrapping;
-
     textureClone.repeat.set(0.004);
-    textureClone.rotation = Math.PI / 2;
-
+    textureClone.rotation = THREE.MathUtils.degToRad(90);
 
     return (
 
         <mesh
-        position={[x, z, y]}
+            position={[x, z, y]}
+            rotation={
+                [THREE.MathUtils.degToRad(rotationX),
+                THREE.MathUtils.degToRad(rotationZ),
+                THREE.MathUtils.degToRad(rotationY)
+            ]
 
-
-        rotation={[THREE.MathUtils.degToRad(rotationX),
-            THREE.MathUtils.degToRad(rotationZ),
-            THREE.MathUtils.degToRad(rotationY)]
-        
-        
-        }
+            }
         >
-            <mesh         
-            
-            rotation={[THREE.MathUtils.degToRad(90),
-            THREE.MathUtils.degToRad(0),
-            THREE.MathUtils.degToRad(0)]}
-            
+            <mesh
+                position={[
+                    (length / Math.sqrt(2) / 2) - (height / Math.sqrt(2) / 2),
+                    0,
+                    (length / Math.sqrt(2) / 2) - (height / Math.sqrt(2) / 2),
+                ]}
+                rotation={[
+                    THREE.MathUtils.degToRad(90),
+                    THREE.MathUtils.degToRad(0),
+                    THREE.MathUtils.degToRad(135)
+                ]}
             >
-
-                <extrudeGeometry attach="geometry" args={[shape, extrusion]}/>
+                <extrudeGeometry attach="geometry" args={[shape, extrusion]} />
                 <meshStandardMaterial transparent={true} map={textureClone} attach="material" />
-            </mesh>        </mesh>
-
-
+            </mesh>
+        </mesh>
     );
 }
 

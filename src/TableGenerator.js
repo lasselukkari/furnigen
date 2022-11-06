@@ -30,49 +30,19 @@ export default function TableGenerator() {
   const [apronWidth, setApronWidth] = useState(20);
   const [apronMargin, setApronMargin] = useState(10);
 
-  const rotation = 0.5;
   const tyovara = 3;
 
-
-  const tools = {
-    8: {
-      TNM: "SPIRAALI-8",
-      IOS: 0,
-      WSP: 7000,
-      DSP: 1500,
-      BCF: 8, // tarkista
-
-    },
-    10: {
-      TNM: "SPIRAALI-10",
-      IOS: 5000,
-      WSP: 8000,
-      DSP: 1800,
-      BCF: 8, // tarkista
-    }
-  }
   const halfTopWidth = tabletopWidth / 2;
-  const halfTopLength = tabletopLength / 2;
   const halfApronWidth = apronWidth / 2;
-  const halfApronHeight = apronHeight / 2;
   const halfLegWidth = legWidth / 2;
   const twoLegWidthAndMargin = (legMargin + legWidth) * 2
-  const halfLegHeight = legHeight / 2;
-  const legCenterMargin = legMargin + halfLegWidth;
   const apronCenterMargin = apronMargin + halfApronWidth;
 
-  const apronSlotCutWidth = apronWidth <= 16 ? 8 : 10;
-  const tool = tools[apronSlotCutWidth];
-
+  const apronSlotCutWidth = 10;
   const apronSlotCutMaxHeight = 45;
   const apronSlotCutDistance = apronCenterMargin;
   const foo = legWidth - Math.floor(apronSlotCutDistance + (apronSlotCutWidth / 2));
   const apronSlotCutDepth = foo > apronSlotCutMaxHeight ? apronSlotCutMaxHeight : foo;
-  const apronsSlotCutX1 = 20;
-  const apronsSlotCutX2 = apronHeight - halfApronWidth
-  const apronPinLength = apronSlotCutDepth - 1;
-  const apron1Length = tabletopLength - (twoLegWidthAndMargin) + (2 * (apronPinLength));
-  const apron2Length = tabletopWidth - (twoLegWidthAndMargin) + (2 * (apronPinLength));
 
 
 
@@ -136,7 +106,7 @@ export default function TableGenerator() {
                   <Form.Label>
                     Width: {legWidth}
                   </Form.Label>
-                  <Form.Range type="number" min="65" max="140" value={legWidth} onChange={(e) => setLegSize(Number(e.target.value))} />
+                  <Form.Range type="number" min="65" max="120" value={legWidth} onChange={(e) => setLegSize(Number(e.target.value))} />
                   <Form.Label>
                     Height: {legHeight}
                   </Form.Label>
@@ -164,7 +134,7 @@ export default function TableGenerator() {
                   <Form.Label>
                     Margin: {apronMargin}
                   </Form.Label>
-                  <Form.Range type="number" min="3" max={legWidth - apronWidth - 3} value={apronMargin} onChange={(e) => setApronMargin(Number(e.target.value))} />
+                  <Form.Range type="number" min="3" max={legWidth/2 - apronWidth/2 - 3} value={apronMargin} onChange={(e) => setApronMargin(Number(e.target.value))} />
 
                 </Form>
 

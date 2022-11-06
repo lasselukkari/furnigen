@@ -3,12 +3,10 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber'
 import * as THREE from "three";
 
-import Pin from './Pin';
-import Body from './Body';
 
-import ApronCix from './ApronCix';
+import MiddleSupportCix from './MiddleSupportCix';
 
-export default function Apron({
+export default function MiddleSupport({
     x,
     y,
     z,
@@ -25,7 +23,10 @@ export default function Apron({
     texture
 }) {
 
-    const foo = ApronCix({
+
+    console.log("width",width);
+
+    const foo = MiddleSupportCix({
         height,
         width,
         length,

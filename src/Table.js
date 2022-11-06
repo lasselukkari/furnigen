@@ -7,12 +7,13 @@ import Apron from './Apron/Apron';
 import Tabletop from './Tabletop/Tabletop';
 import Leg from './Leg/Leg';
 import AngleSupport from './AngleSupport/AngleSupport';
+import MiddleSupport from './MiddleSupport/MiddleSupport';
 import * as THREE from "three";
 
 
 
 
-export default function Table({ tableState,
+export default function Table({
   tabletopHeigth,
   tabletopWidth,
   tabletopLength,
@@ -42,8 +43,16 @@ export default function Table({ tableState,
   const calculatedSlotCutDepth = legWidth - Math.floor(apronSlotCutDistance + (apronSlotCutWidth / 2));
   const apronSlotCutDepth = calculatedSlotCutDepth > apronSlotCutMaxHeight ? apronSlotCutMaxHeight : calculatedSlotCutDepth;
   const apronPinLength = apronSlotCutDepth - 1;
-  const apron1Length = tabletopLength - (twoLegWidthAndMargin) + (2 * (apronPinLength));
-  const apron2Length = tabletopWidth - (twoLegWidthAndMargin) + (2 * (apronPinLength));
+  const apronPinWidth = apronHeight - 20;
+
+  const supportWidth = 25;
+  const supportHeight = apronHeight - 5;
+  const supportLength = ( (legWidth - apronMargin - apronWidth)*Math.sqrt(2) * 2) + 2*supportWidth + 5;
+  const middleSupport = tabletopLength > 1600;
+
+  const middleSupportLength = tabletopWidth - 2*legMargin-2*apronMargin -2*apronWidth;
+  const middleSupportWidth =  apronHeight - 10;
+  const middleSupportHeight = 30;
 
   const aprons = [
     {
@@ -125,33 +134,60 @@ export default function Table({ tableState,
     }
   ]
 
-  const supportHeight = apronHeight - 5;
-  const supportLength = 500
-  const supportWidth = 25;
 
-  const supporSide = Math.sqrt((supportLength * supportLength) / 2);
-  const foo = Math.sqrt((supportWidth * supportWidth) / 2);
-  const margin =  (supporSide / 2);
 
   const angleSupports = [
-
+    {
+      x:-halfTopWidth + legMargin + apronMargin + apronWidth,
+      y:-halfTopLength+ legMargin + apronMargin + apronWidth,
+      z:legHeight/2, 
+      length:supportLength, 
+      width:supportHeight, 
+      height:supportWidth,
+      rotationZ:0 
+    },
+    {
+      x:halfTopWidth - legMargin - apronMargin - apronWidth,
+      y:-halfTopLength+ legMargin + apronMargin + apronWidth,
+      z:legHeight/2,
+      length:supportLength,
+      width:supportHeight,
+      height:supportWidth,
+      rotationZ:270
+    },
+    {
+      x:-halfTopWidth + legMargin + apronMargin + apronWidth,
+      y:halfTopLength - legMargin - apronMargin - apronWidth,
+      z:legHeight/2,
+      length:supportLength,
+      width:supportHeight,
+      height:supportWidth,
+      rotationZ:90
+    },
+    {
+      x:halfTopWidth - legMargin - apronMargin - apronWidth,
+      y:halfTopLength - legMargin - apronMargin - apronWidth,
+      z:legHeight/2,
+      length:supportLength,
+      width:supportHeight,
+      height:supportWidth,
+      rotationZ:180
+    }
   ]
 
   return (
-
-
-
-
 
     <Canvas
 
       shadows
       camera={{ fov: 15, near: 0.1, far: 1000, position: [3.5, 2, 5] }} frameloop="demand" style={{ width: '100%', height: '600px' }}
     >
-      <group scale={0.001}>
+      <group 
+      scale={0.001}
+      >
 
 
-        {aprons.map(({ x, y, z, length, width, height, rotationX, rotationY, rotationZ }, index) => {
+      {aprons.map(({ x, y, z, length, width, height, rotationX, rotationY, rotationZ }, index) => {
           return (
             <Apron
               key={index}
@@ -164,13 +200,38 @@ export default function Table({ tableState,
               length={length}
               width={width}
               height={height}
-              pinWidth={50}
+              pinLength={apronPinLength}
+              pinWidth={apronPinWidth}
               pinHeight={10}
-              pinLength={30}
+              pinMargin={5}
               texture={texture}
             />
           )
         })}
+
+        {
+          // conditionally render middle support
+          middleSupport && (
+          <MiddleSupport
+              x={0}
+              y={legHeight/2- middleSupportWidth/2}
+              z={0}
+              rotationX={0}
+              rotationY={90}
+              rotationZ={90}
+              length={middleSupportLength}
+              width={middleSupportWidth}
+              height={middleSupportHeight}
+              pinLength={apronPinLength}
+              pinWidth={apronPinWidth}
+              pinHeight={10}
+              pinMargin={5}
+              texture={texture}
+          />
+          
+          )
+
+        }
 
         {legs.map(({ x, y, z, length, width, height, rotationX, rotationY, rotationZ }, index) => {
           return (
@@ -185,9 +246,12 @@ export default function Table({ tableState,
               length={length}
               width={width}
               height={height}
-              pinWidth={50}
+              apronWidth={apronHeight}
+              apronMargin={apronMargin}
+              pinLength={apronPinLength}
+              pinWidth={apronPinWidth}
               pinHeight={10}
-              pinLength={30}
+              pinOffset={-5}
               texture={texture}
             />
           )
@@ -214,7 +278,7 @@ export default function Table({ tableState,
         }
 
 
-{         <Tabletop
+          <Tabletop
           x={0}
           y={0}
           z={legHeight / 2 + tabletopHeigth / 2}
@@ -229,7 +293,7 @@ export default function Table({ tableState,
           pinLength={30}
           texture={texture}
         />
- }
+ 
 
       </group>
       <spotLight position={[5, 5, 5]} angle={0.7} penumbra={1} castShadow />
@@ -240,7 +304,8 @@ export default function Table({ tableState,
         shadow-mapSize-height={512}
         shadow-mapSize-width={512}
       />
-      <OrbitControls />
+      <OrbitControls/>
+      <primitive object={new THREE.AxesHelper(10)} />
     </Canvas>
   )
 }
