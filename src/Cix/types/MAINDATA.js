@@ -58,7 +58,7 @@ END MAINDATA
 
 */
 
-class MAINDATA {
+export default class MAINDATA {
 	constructor({
         xml = '',
         LPX = 0,
@@ -169,4 +169,3 @@ END MAINDATA
 
   }
 
-module.exports = MAINDATA;

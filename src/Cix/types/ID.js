@@ -4,7 +4,7 @@ BEGIN ID CID3
 END ID
 */
 
-class ID {
+export default class ID {
 	constructor({REL}) {
 		this.REL = REL;
 	}
@@ -19,4 +19,3 @@ END ID
 
 }
 
-module.exports = ID;

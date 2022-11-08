@@ -28,42 +28,42 @@ export default function MiddleSupportCix({
 
     const G1001_1001 = new Geometry({ ID: 'G1001.1001', CRN: '2', RTY: 2 });
     G1001_1001.setStartPoint({ X: 0, Y: width });
-    G1001_1001.addLineTo({ ID: 100, XE: 0, YE: 0 });
-    G1001_1001.addLineTo({ ID: 101, XE: totalLength, YE: 0 });
-    G1001_1001.addLineTo({ ID: 102, XE: totalLength, YE: width });
-    G1001_1001.addLineTo({ ID: 103, XE: 0, YE: width });
+    G1001_1001.addLineEp({ ID: 100, XE: 0, YE: 0 });
+    G1001_1001.addLineEp({ ID: 101, XE: totalLength, YE: 0 });
+    G1001_1001.addLineEp({ ID: 102, XE: totalLength, YE: width });
+    G1001_1001.addLineEp({ ID: 103, XE: 0, YE: width });
     cix.addGeometry(G1001_1001);
 
     for (let i = 0; i < attachPointCount; i++) {
         const G1001_1087 = new Geometry({ ID: `G1001.109${i}`, RTY: 2 });
         G1001_1087.setStartPoint({ X: ((length / attachPointCount+1) * (i+1)) - 25, Y: width - 16 });
-        G1001_1087.addLineTo({ XE: ((length / attachPointCount+1) * (i+1)) + 25, YE: width - 16 });
+        G1001_1087.addLineEp({ XE: ((length / attachPointCount+1) * (i+1)) + 25, YE: width - 16 });
         cix.addGeometry(G1001_1087);
     }
 
     // tapin geometria
     const G1001_1085 = new Geometry({ ID: 'G1001.1085', SIDE: 3, RTY: 2 });
     G1001_1085.setStartPoint({ X: width - 10, Y: (height - pinHeight) / 2 });
-    G1001_1085.addLineTo({ ID: 100, XE: 10, YE: (height - pinHeight) / 2 });
-    G1001_1085.addArcTo({ ID: 101, X2: 10, Y2: height / 2, XE: 5, YE: ((height - pinHeight) / 2) + pinHeight });
-    G1001_1085.addLineTo({ ID: 102, XE: width - 10, YE: ((height - pinHeight) / 2) + pinHeight });
-    G1001_1085.addArcTo({ ID: 103, X2: width - 5, Y2: height / 2, XE: width - 10, YE: (height - pinHeight) / 2 });
+    G1001_1085.addLineEp({ ID: 100, XE: 10, YE: (height - pinHeight) / 2 });
+    G1001_1085.addArcIpep({ ID: 101, X2: 10, Y2: height / 2, XE: 5, YE: ((height - pinHeight) / 2) + pinHeight });
+    G1001_1085.addLineEp({ ID: 102, XE: width - 10, YE: ((height - pinHeight) / 2) + pinHeight });
+    G1001_1085.addArcIpep({ ID: 103, X2: width - 5, Y2: height / 2, XE: width - 10, YE: (height - pinHeight) / 2 });
     cix.addGeometry(G1001_1085);
 
     // toisen pään tapin geometria    
     const G1001_1086 = new Geometry({ ID: 'G1001.1086', SIDE: 1, RTY: 2 });
     G1001_1086.setStartPoint({ X: 10, Y: (height - pinHeight) / 2 });
-    G1001_1086.addLineTo({ ID: 100, XE: width - 10, YE: (height - pinHeight) / 2 });
-    G1001_1086.addArcTo({ ID: 101, X2: width - 10, Y2: height / 2, XE: width - 5, YE: ((height - pinHeight) / 2) + pinHeight });
-    G1001_1086.addLineTo({ ID: 102, XE: 10, YE: ((height - pinHeight) / 2) + pinHeight });
-    G1001_1086.addArcTo({ ID: 103, X2: 5, Y2: height / 2, XE: 10, YE: (height - pinHeight) / 2 });
+    G1001_1086.addLineEp({ ID: 100, XE: width - 10, YE: (height - pinHeight) / 2 });
+    G1001_1086.addArcIpep({ ID: 101, X2: width - 10, Y2: height / 2, XE: width - 5, YE: ((height - pinHeight) / 2) + pinHeight });
+    G1001_1086.addLineEp({ ID: 102, XE: 10, YE: ((height - pinHeight) / 2) + pinHeight });
+    G1001_1086.addArcIpep({ ID: 103, X2: 5, Y2: height / 2, XE: 10, YE: (height - pinHeight) / 2 });
     cix.addGeometry(G1001_1086);
 
     cix.addOffset({
         X: 50
     });
 
-    cix.addCut({
+    cix.addCutGeo({
         ID: 'P1021',
         GID: 'G1001.1001',
         DP: 5,
@@ -87,7 +87,7 @@ export default function MiddleSupportCix({
         BTT: 0.1
     });
 
-    cix.addRouting({
+    cix.addRoutg({
         ID: 'P1017',
         GID: 'G1001.1085',
         DP: pinLength,
@@ -121,7 +121,7 @@ export default function MiddleSupportCix({
         LPR: 1
     });
 
-    cix.addRouting({
+    cix.addRoutg({
         ID: 'P1017',
         GID: 'G1001.1086',
         DP: pinLength,
@@ -154,7 +154,7 @@ export default function MiddleSupportCix({
         LPR: 1
     });
     for (let i = 0; i < attachPointCount; i++) {
-        cix.addRouting({
+        cix.addRoutg({
             ID: `P109${i}`,
             GID: `G1001.109${i}`,
             DP: 10,

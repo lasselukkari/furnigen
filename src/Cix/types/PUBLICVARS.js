@@ -7,7 +7,7 @@ END PUBLICVARS
 
 
 
-class PUBLICVARS {
+export default class PUBLICVARS {
     constructor(options) {
         this.options = options;
     }
@@ -22,5 +22,3 @@ END PUBLICVARS
     }
 
 }
-
-module.exports = PUBLICVARS;

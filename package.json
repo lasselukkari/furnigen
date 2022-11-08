@@ -1,8 +1,9 @@
 {
   "name": "furnigen",
   "version": "0.1.0",
-  "homespage": "https://lasselukkari.github.io/furnigen",
+  "homepage": "https://lasselukkari.github.io/furnigen",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@react-three/csg": "^1.1.5",
     "@react-three/drei": "^9.32.4",

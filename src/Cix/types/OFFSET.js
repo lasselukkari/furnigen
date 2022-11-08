@@ -8,7 +8,7 @@ BEGIN MACRO
 END MACRO
 */
 
-class OFFSET {
+export default class OFFSET {
 	constructor(
 		{
             X = 0,
@@ -36,4 +36,3 @@ END MACRO
 	}
 }
 
-module.exports = OFFSET;

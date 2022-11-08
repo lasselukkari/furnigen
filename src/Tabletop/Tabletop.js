@@ -1,19 +1,18 @@
 
 
-import React, { useEffect, useRef, useState } from 'react'
-import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber'
+import React from 'react'
 import * as THREE from "three";
 
-export default function TableTop({
-    x,
-    y,
-    z,
+
+export default function Tabletop({
+    x=0,
+    y=0,
+    z=0,
     length,
     width,
     height,
     texture,
 }) {
-
     return (
         <mesh
             shadows

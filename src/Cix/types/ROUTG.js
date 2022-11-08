@@ -91,7 +91,7 @@ END MACRO
 
 */
 
-class ROUTG {
+export default class ROUTG {
 	constructor({
         LAY = 'Layer 0',
         ID = '',
@@ -151,13 +151,13 @@ class ROUTG {
         OVM = 0,
         SWI = 0,
         BLW = 0,
-        TOS = 1,
+        TOS = 0,
         TNM = '',
         TTP = 0,
         SPI = '',
-        BFC = 1,
+        BFC = 0,
         SHT = 0,
-        SHP = 3,
+        SHP = 0,
         SHD = 0,
         PRS = 0,
         NEBS = 0,
@@ -359,4 +359,3 @@ END MACRO
 	}
 }
 
-module.exports = ROUTG;

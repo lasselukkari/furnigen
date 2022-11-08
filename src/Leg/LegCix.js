@@ -23,37 +23,37 @@ export default function ApronCix({
 
 	const G1001_1001 = new Geometry({ID: 'G1001.1001', CRN: '2', RTY: 2});
 	G1001_1001.setStartPoint({Y: width});
-	G1001_1001.addLineTo({ID: 100});
-	G1001_1001.addLineTo({ID: 101, XE: length});
-	G1001_1001.addLineTo({ID: 102, XE: length, YE: width});
-	G1001_1001.addLineTo({ID: 103, YE: width});
+	G1001_1001.addLineEp({ID: 100});
+	G1001_1001.addLineEp({ID: 101, XE: length});
+	G1001_1001.addLineEp({ID: 102, XE: length, YE: width});
+	G1001_1001.addLineEp({ID: 103, YE: width});
 	cix.addGeometry(G1001_1001);
 
   // Slot
 	const G1001_1002 = new Geometry({ID: 'G1001.1002', RTY: 2});
 	G1001_1002.setStartPoint({X: 20, Y: slotDistance});
-	G1001_1002.addLineTo({XE: apronWidth - 10, YE: 20});
+	G1001_1002.addLineEp({XE: apronWidth - 10, YE: slotDistance});
 	cix.addGeometry(G1001_1002);
 
   // Slot
 	const G1001_1003 = new Geometry({ID: 'G1001.1003', SIDE: 2, CRN: '2', RTY: 2});
 	G1001_1003.setStartPoint({X: 20, Y: slotDistance});
-	G1001_1003.addLineTo({XE: apronWidth - 10, YE: 20});
+	G1001_1003.addLineEp({XE: apronWidth - 10, YE: slotDistance});
 	cix.addGeometry(G1001_1003);
 
   // End cut
 	const G1001_1006 = new Geometry({ID: 'G1001.1006', RTY: 2});
 	G1001_1006.setStartPoint({});
-	G1001_1006.addLineTo({YE: width});
+	G1001_1006.addLineEp({YE: width});
 	cix.addGeometry(G1001_1006);
 
   // End cut
 	const G1001_1007 = new Geometry({ID: 'G1001.1007', RTY: 2, RV: 1});
 	G1001_1007.setStartPoint({X: length});
-	G1001_1007.addLineTo({XE: length, YE: width});
+	G1001_1007.addLineEp({XE: length, YE: width});
 	cix.addGeometry(G1001_1007);
 
-	cix.addRouting({
+	cix.addRoutg({
 		ID: 'P1005',
 		GID: 'G1001.1002',
 		DP: pinLength,
@@ -85,7 +85,7 @@ export default function ApronCix({
 		LPR: 1
 	});
 
-	cix.addRouting({
+	cix.addRoutg({
 		ID: 'P1005',
 		GID: 'G1001.1003',
 		DP: pinLength,
@@ -117,7 +117,7 @@ export default function ApronCix({
 		LPR: 1
 	});
 
-	cix.addCut({
+	cix.addCutGeo({
 		ID: 'P1006',
 		GID: 'G1001.1006',
 		DP: 5,
@@ -139,7 +139,7 @@ export default function ApronCix({
 		PRV: 1
 	});
 
-	cix.addCut({
+	cix.addCutGeo({
 		ID: 'P1006',
 		GID: 'G1001.1007',
 		DP: 5,

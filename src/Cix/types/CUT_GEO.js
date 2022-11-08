@@ -40,7 +40,7 @@ PARAM,NAME=LAY,VALUE="Layer 0"
   PARAM,NAME=BTT,VALUE=0.1
 */
 
-class CUT_GEO {
+export default class CUT_GEO {
 	constructor({
     LAY = 'Layer 0',
     ID = 0,
@@ -171,4 +171,3 @@ END MACRO
 	}
 }
 
-module.exports = CUT_GEO;

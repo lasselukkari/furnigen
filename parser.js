@@ -1,9 +1,18 @@
-const fs = require('fs/promises');
-const P = require('parsimmon');
+import fs from 'fs/promises';
+import P from 'parsimmon';
 
 const reduceValues = (values, filterDefaults) => {
   return values.reduce((acc, [name, value]) => {
-    if (filterDefaults) {
+    if (filterDefaults &&
+      name !== "X" &&
+      name !== "Y" &&
+      name !== "Z" &&
+      name !== "XE" &&
+      name !== "YE" &&
+      name !== "ZE" &&
+      name !== "MVT" 
+    ) {
+
       if (name === 'LAY' && value === 'Layer 0') {
         return acc;
       }
@@ -19,6 +28,7 @@ const reduceValues = (values, filterDefaults) => {
         return acc;
       }
     }
+
     acc[name] = value;
 
     return acc;
@@ -26,12 +36,15 @@ const reduceValues = (values, filterDefaults) => {
 };
 
 const nameSelector = name => P.optWhitespace.then(P.string('NAME=').then(P.string(name)));
-const castValue = value => {
-  return (value.startsWith('"') && value.endsWith('"')) ? value.slice(1, -1) : eval(value);
-};
 const macro = (r, content) => r.beginMacro.then(content).skip(r.endMacro);
 
 const parser = P.createLanguage({
+  // parses positive and negative integers
+  valueInt: r => P.regexp(/[+-]?\d+/).map(Number),
+  valueFloat: r => P.regexp(/[0-9]+\.[0-9]+/).map(Number),
+  valueString: r => P.regexp(/"[^"]*"/).map((value) => value.slice(1, -1)),
+  valueFormula  :   r => P.regexp(/[A-Za-z0-9_ ".,()+-/]+/),
+  value: r => r.valueFloat.or(r.valueInt).or(r.valueString).or(r.valueFormula),
   beginID: r => P.optWhitespace.then(P.string('BEGIN ID CID3')),
   endID: r => P.optWhitespace.then(P.string('END ID')),
   beginMaindata: r => P.optWhitespace.then(P.string('BEGIN MAINDATA')),
@@ -41,7 +54,7 @@ const parser = P.createLanguage({
   beginMacro: r => P.optWhitespace.then(P.string('BEGIN MACRO')),
   endMacro: r => P.optWhitespace.then(P.string('END MACRO')),
   xmlDocument: r => P.optWhitespace.then(P.regex(/'xml':([^\n]+)/)).many().map(lines => lines.join('\n\t')),
-  nameValue: r => P.optWhitespace.then(P.seq(P.regex(/[A-Z0-9_]+/).skip(P.string('=')), P.regex(/[A-Za-z0-9_ ".]+/))).map(([name, value]) => [name, castValue(value)]),
+  nameValue: r => P.optWhitespace.then(P.seq(P.regex(/[A-Z0-9_]+/).skip(P.string('=')), r.value)).map(([name, value]) => [name, value]),
   nameValues: r => r.nameValue.many(),
   name: r => P.optWhitespace.then(P.string('NAME=').then(P.regex(/[A-Z0-9_]+/))),
   nameOffset: r => nameSelector('OFFSET'),
@@ -49,21 +62,17 @@ const parser = P.createLanguage({
   nameGeo: r => nameSelector('GEO'),
   nameEndPath: r => nameSelector('ENDPATH'),
   nameCutGeo: r => nameSelector('CUT_GEO'),
+  nameBg: r => nameSelector('BG'),
   nameLineEP: r => nameSelector('LINE_EP'),
+  nameLincEP: r => nameSelector('LINC_EP'),
   nameLineArcIpep: r => nameSelector('ARC_IPEP'),
   nameRoutG: r => nameSelector('ROUTG'),
-  value: r => P.string('VALUE=').then(P.regex(/[A-Za-z0-9_ ".,()+-]+/)).map(castValue),
   paramName: r => P.string('PARAM,NAME=').then(P.regex(/[A-Z0-9_]+/)),
-  param: r => P.seq(P.optWhitespace.then(r.paramName), P.string(',').then(r.value)),
+  param: r => P.seq(P.optWhitespace.then(r.paramName), P.string(',').then(P.string('VALUE=').then(r.value))),
   params: r => r.param.many().map(values => reduceValues(values, true)),
-  offsetMacro: r => macro(r, P.seq(r.nameOffset, r.params)).map(data => {
-    return {
-      type: 'offset',
-      params: data[1]
-    };
-  }),
+  offsetMacro: r => macro(r, P.seq(r.nameOffset, r.params)).map(data => ({ type: 'offset', params: data[1] })),
   geoMacro: r => macro(r, P.seq(r.nameGeo, r.params)),
-  geoSequence: r => P.seq(r.geoMacro, P.alt(r.startPointMacro, r.lineEPMacro, r.lineArcIpepMacro).many()).skip(r.endPathMacro).map(result => {
+  geoSequence: r => P.seq(r.geoMacro, P.alt(r.startPointMacro, r.lineEPMacro, r.lincEPMacro, r.lineArcIpepMacro).many()).skip(r.endPathMacro).map(result => {
     return {
       type: 'geo',
       params: result[0][1],
@@ -71,21 +80,13 @@ const parser = P.createLanguage({
     };
   }),
 
-  routGSequence: r => r.routGMacro.skip(r.endPathMacro).map(result => {
-    return {
-      type: 'routG',
-      params: result[1]
-    };
-  }),
-  cutGeoMacro: r => macro(r, P.seq(r.nameCutGeo, r.params)).map(data => {
-    return {
-      type: 'cutGeo',
-      params: data[1]
-    };
-  }),
+  routGSequence: r => r.routGMacro.skip(r.endPathMacro).map(result => ({ type: 'routG', params: result[1] })),
+  cutGeoMacro: r => macro(r, P.seq(r.nameCutGeo, r.params)).map(data => ({ type: 'cutGeo', params: data[1] })),
+  bgMacro: r => macro(r, P.seq(r.nameBg, r.params)).map(data => ({ type: 'bg', params: data[1] })),
   endPathMacro: r => macro(r, r.nameEndPath),
   startPointMacro: r => macro(r, P.seq(r.nameStartPoint, r.params)),
   lineEPMacro: r => macro(r, P.seq(r.nameLineEP, r.params)),
+  lincEPMacro: r => macro(r, P.seq(r.nameLincEP, r.params)),
   lineArcIpepMacro: r => macro(r, P.seq(r.nameLineArcIpep, r.params)),
   routGMacro: r => macro(r, P.seq(r.nameRoutG, r.params)),
   maindata: r => r.beginMaindata.then(P.seq(r.xmlDocument, r.nameValues.map(values => reduceValues(values, true))).skip(r.endMaindata)).map(([xml, values]) => ({ xml, ...values })),
@@ -105,55 +106,67 @@ const parser = P.createLanguage({
       r.cutGeoMacro,
       r.geoSequence,
       r.routGSequence,
+      r.bgMacro,
 
     ).many()
   ).skip(P.optWhitespace).skip(P.eof)
 });
 
-// Return `const maindata = new Maindata(${JSON.stringify({xml, ...values}, null, 2)});`;
+
+
+function toJsObject(params, indent) {
+  return JSON.stringify(params, null, indent).replace(/"([^"]+)":/g, '$1:')
+}
 
 const toCode = ([id, maindata, ...rest]) => {
-  return `const fs = require('fs/promises');    
-const Cix = require('./Cix');
-const Geometry = require('./Geometry');
+  return `import fs from 'fs/promises';    
+import Cix from './src/Cix/Cix.js';
+import Geometry from './src/Cix/Geometry.js';
     
 const cix = new Cix(
   ${JSON.stringify(maindata, null, 2)});\n
 ${rest[0].map(item => {
     if (item.type === 'publicVars') {
-      return `cix.addPublicVars(${JSON.stringify(item.params, null, 2)});\n`;
+      return `cix.addPublicVars(${toJsObject(item.params, 2)});\n`;
     }
 
     if (item.type === 'offset') {
-      return `cix.addOffset(${JSON.stringify(item.params, null, 2)});\n`;
+      return `cix.addOffset(${toJsObject(item.params, 2)});\n`;
     }
     if (item.type === 'geo') {
       const varName = item.params.ID.replace('.', '_');
-      return `const ${varName} = new Geometry(${JSON.stringify(item.params)});
+      return `const ${varName} = new Geometry(${toJsObject(item.params)});
 ${item.children.map(([type, params]) => {
         if (type === 'START_POINT') {
-          return `${varName}.setStartPoint(${JSON.stringify(params)});`;
+          return `${varName}.setStartPoint(${toJsObject(params)});`;
         }
         if (type === 'LINE_EP') {
-          return `${varName}.addLineTo(${JSON.stringify(params)});`;
+          return `${varName}.addLineEp(${toJsObject(params)});`;
+        }
+        if (type === 'LINC_EP') {
+          return `${varName}.addLincEp(${toJsObject(params)});`;
         }
         if (type === 'ARC_IPEP') {
-          return `${varName}.addArcTo(${JSON.stringify(params)});`;
+          return `${varName}.addArcIpep(${toJsObject(params)});`;
         }
       }).join('\n')}
 cix.addGeometry(${varName});\n`;
     }
 
     if (item.type === 'routG') {
-      return `cix.addRouting(${JSON.stringify(item.params, null, 2)});\n`;
+      return `cix.addRoutg(${toJsObject(item.params, 2)});\n`;
     }
 
     if (item.type === 'cutGeo') {
-      return `cix.addCut(${JSON.stringify(item.params, null, 2)});\n`;
+      return `cix.addCutGeo(${toJsObject(item.params, 2)});\n`;
+    }
+
+    if (item.type === 'bg') {
+      return `cix.addBg(${toJsObject(item.params, 2)});\n`;
     }
   }).join('\n')}
     
-fs.writeFile('./result.cix', cix.toMacro());
+fs.writeFile(process.argv[2], cix.toMacro());
     `;
 };
 

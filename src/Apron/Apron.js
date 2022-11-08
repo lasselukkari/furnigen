@@ -15,23 +15,13 @@ export default function Apron({
     length,
     width,
     height,
-    pinWidth,
-    pinHeight=10,
-    pinOffset,
-    pinLength,
     rotationX=0,
     rotationY=0,
     rotationZ=90,
     texture
 }) {
 
-    const foo = ApronCix({
-        height,
-        width,
-        length,
-       pinLength,
-       pinHeight,
-    })
+
 
     return (
 

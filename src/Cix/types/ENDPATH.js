@@ -4,7 +4,7 @@ BEGIN MACRO
 END MACRO
 */
 
-class ENDPATH {
+export default class ENDPATH {
 	constructor() { }
 
 	toMacro() {
@@ -16,4 +16,3 @@ END MACRO
 	}
 }
 
-module.exports = ENDPATH;

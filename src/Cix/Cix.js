@@ -1,12 +1,13 @@
-const ID = require('./types/ID');
-const MAINDATA = require('./types/MAINDATA');
-const OFFSET = require('./types/OFFSET');
-const ROUTG = require('./types/ROUTG');
-const CUT_GEO = require('./types/CUT_GEO');
-const PUBLICVARS = require('./types/PUBLICVARS');
-const ENDPATH = require('./types/ENDPATH');
+import ID  from './types/ID.js';
+import MAINDATA from './types/MAINDATA.js';
+import OFFSET from './types/OFFSET.js';
+import ROUTG from './types/ROUTG.js';
+import CUT_GEO from './types/CUT_GEO.js';
+import BG from './types/BG.js';
+import PUBLICVARS  from './types/PUBLICVARS.js';
+import ENDPATH from './types/ENDPATH.js';
 
-class Cix {
+export default class Cix {
 	constructor(maindata, REL = 5) {
 		this.children = [];
 		this.children.push(new ID({REL}));
@@ -25,13 +26,17 @@ class Cix {
     this.children.push(new PUBLICVARS(params));
   }
 
-	addRouting(params) {
+	addRoutg(params) {
 		this.children.push(new ROUTG(params));
     this.children.push(new ENDPATH());
 	}
 
-	addCut(params) {
+	addCutGeo(params) {
 		this.children.push(new CUT_GEO(params));
+	}
+
+	addBg(params) {
+		this.children.push(new BG(params));
 	}
 
 	toMacro() {
@@ -39,4 +44,3 @@ class Cix {
 	}
 }
 
-module.exports = Cix;

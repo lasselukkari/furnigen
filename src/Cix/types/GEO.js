@@ -16,7 +16,7 @@ BEGIN MACRO
 END MACRO
 */
 
-class GEO {
+export default class GEO {
 	constructor(
 		{
       LAY = 'Layer 0',
@@ -68,4 +68,3 @@ END MACRO
 	}
 }
 
-module.exports = GEO;

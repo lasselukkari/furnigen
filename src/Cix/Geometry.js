@@ -1,13 +1,11 @@
+import GEO from './types/GEO.js';
+import ENDPATH from './types/ENDPATH.js';
+import START_POINT from './types/START_POINT.js';
+import LINE_EP from './types/LINE_EP.js';
+import LINC_EP from './types/LINC_EP.js';	
+import ARC_IPEP from './types/ARC_IPEP.js';
 
-const GEO = require('./types/GEO');
-const CUT_GEO = require('./types/CUT_GEO');
-const ROUTG = require('./types/ROUTG');
-const ENDPATH = require('./types/ENDPATH');
-const START_POINT = require('./types/START_POINT');
-const LINE_EP = require('./types/LINE_EP');
-const ARC_IPEP = require('./types/ARC_IPEP');
-
-class Geometry {
+export default class Geometry {
 	constructor(params) {
 		this.geo = new GEO(params);
 		this.children = [];
@@ -18,13 +16,18 @@ class Geometry {
 		this.startPoint = new START_POINT(params);
 	}
 
-	addLineTo(params) {
+	addLineEp(params) {
 		this.children.push(new LINE_EP(params));
 	}
 
-	addArcTo(params) {
+	addArcIpep(params) {
 		this.children.push(new ARC_IPEP(params));
 	}
+
+	addLincEp(params) {
+		this.children.push(new LINC_EP(params));
+	}
+
 
 	toMacro() {
 		return `${this.geo.toMacro()}
@@ -34,4 +37,3 @@ ${this.endPath.toMacro()}`;
 	}
 }
 
-module.exports = Geometry;

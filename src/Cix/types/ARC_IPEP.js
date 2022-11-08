@@ -1,5 +1,5 @@
 
-class ARC_IPEP {
+export default class ARC_IPEP {
 	constructor({
         LAY = 'Layer 0',
         ID = 0,
@@ -43,4 +43,3 @@ END MACRO
 	}
   }
 
-module.exports = ARC_IPEP;

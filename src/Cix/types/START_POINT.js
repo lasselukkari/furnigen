@@ -7,7 +7,7 @@ BEGIN MACRO
 END MACRO
 */
 
-class START_POINT {
+export default class START_POINT {
 	constructor({
         LAY = 'Layer 0',
         X = 0,
@@ -30,4 +30,3 @@ END MACRO
 	}
 }
 
-module.exports = START_POINT;

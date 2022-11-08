@@ -37,7 +37,7 @@ export default function AngleSupport({
 
     return (
 
-        <mesh
+        <group
             position={[x, z, y]}
             rotation={
                 [THREE.MathUtils.degToRad(rotationX),
@@ -62,7 +62,7 @@ export default function AngleSupport({
                 <extrudeGeometry attach="geometry" args={[shape, extrusion]} />
                 <meshStandardMaterial transparent={true} map={textureClone} attach="material" />
             </mesh>
-        </mesh>
+        </group>
     );
 }
 
