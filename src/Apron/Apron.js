@@ -1,12 +1,6 @@
 
-import React, { useEffect, useRef, useState } from 'react'
-import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber'
+import React from 'react'
 import * as THREE from "three";
-
-import Pin from './Pin';
-import Body from './Body';
-
-import ApronCix from './ApronCix';
 
 export default function Apron({
     x,

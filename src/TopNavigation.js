@@ -6,8 +6,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function TopNavigation () {
   return (
-    <Navbar bg="light" expand="lg">
-      <Container>
+    <Navbar bg="primary" expand="lg" fixed="top" variant="dark">
+      <Container fluid>
         <Navbar.Brand href="#home">FurniGen</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

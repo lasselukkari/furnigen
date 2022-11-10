@@ -40,10 +40,11 @@ const macro = (r, content) => r.beginMacro.then(content).skip(r.endMacro);
 
 const parser = P.createLanguage({
   // parses positive and negative integers
-  valueInt: r => P.regexp(/[+-]?\d+/).map(Number),
-  valueFloat: r => P.regexp(/[0-9]+\.[0-9]+/).map(Number),
+  whiteSpateButNotNewLine: () => P.regexp(/[ \t]/).many(),
+  valueInt: r => P.regexp(/[+-]?\d+/).skip(r.whiteSpateButNotNewLine).skip(P.newline).map(Number),
+  valueFloat: r => P.regexp(/[0-9]+\.[0-9]+/).skip(r.whiteSpateButNotNewLine).skip(P.newline).map(Number),
   valueString: r => P.regexp(/"[^"]*"/).map((value) => value.slice(1, -1)),
-  valueFormula  :   r => P.regexp(/[A-Za-z0-9_ ".,()+-/]+/),
+  valueFormula  :   r => P.regexp(/[A-Za-z0-9_ "\*.,()\+-/]+/),
   value: r => r.valueFloat.or(r.valueInt).or(r.valueString).or(r.valueFormula),
   beginID: r => P.optWhitespace.then(P.string('BEGIN ID CID3')),
   endID: r => P.optWhitespace.then(P.string('END ID')),

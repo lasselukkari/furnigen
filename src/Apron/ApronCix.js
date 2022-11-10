@@ -2,17 +2,18 @@ import Cix from '../Cix/Cix';
 import Geometry from '../Cix/Geometry';
 
 export default function ApronCix({
-     height,
-     width,
-     length,
+    height,
+    width,
+    length,
     pinLength,
     pinHeight,
     middleSupportPinLength,
+    useMiddleSupport = false,
 }) {
     const totalLength = length + (pinLength * 2);
     const attachPointCount = Math.ceil(length / 500);
 
-    if (middleSupportPinLength && attachPointCount % 2 === 1) {
+    if (useMiddleSupport && attachPointCount % 2 === 1) {
         attachPointCount++;
     }
 
@@ -55,14 +56,14 @@ export default function ApronCix({
 
     for (let i = 0; i < attachPointCount; i++) {
         const G1001_1087 = new Geometry({ ID: `G1001.109${i}`, RTY: 2 });
-        G1001_1087.setStartPoint({ X: ((length / (attachPointCount+1)) * (i+1)) - 25, Y: width - 16 });
-        G1001_1087.addLineEp({ XE: ((length / (attachPointCount+1)) * (i+1)) + 25, YE: width - 16 });
+        G1001_1087.setStartPoint({ X: ((length / (attachPointCount + 1)) * (i + 1)) - 25, Y: width - 16 });
+        G1001_1087.addLineEp({ XE: ((length / (attachPointCount + 1)) * (i + 1)) + 25, YE: width - 16 });
         cix.addGeometry(G1001_1087);
     }
 
-    if (middleSupportPinLength) {
+    if (useMiddleSupport) {
         const G1001_1088 = new Geometry({ ID: 'G1001.1200', RTY: 2 });
-        G1001_1088.setStartPoint({ X: length/2, Y: 15 });
+        G1001_1088.setStartPoint({ X: length / 2, Y: 15 });
         G1001_1088.addLineEp({ XE: length / 2, YE: width - 15 });
         cix.addGeometry(G1001_1088);
     }
@@ -278,14 +279,14 @@ export default function ApronCix({
             SHP: 9,
             LPR: 1
         });
-    
+
     }
 
-    if (middleSupportPinLength) {
+    if (useMiddleSupport) {
         cix.addRoutg({
             ID: 'P1200',
             GID: 'G1001.1200',
-            DP: 10,
+            DP: middleSupportPinLength,
             CKA: 3,
             OPT: 1,
             RSP: 18000,

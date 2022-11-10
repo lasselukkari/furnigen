@@ -1,7 +1,7 @@
 import Cix from '../Cix/Cix';
 import Geometry from '../Cix/Geometry';
 
-export default function ApronCix({
+export default function CornerSupportCix({
   width,
   length,
 }) {
