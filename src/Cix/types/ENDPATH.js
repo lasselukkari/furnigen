@@ -5,8 +5,6 @@ END MACRO
 */
 
 export default class ENDPATH {
-	constructor() { }
-
 	toMacro() {
 		return `
 BEGIN MACRO

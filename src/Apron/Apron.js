@@ -17,9 +17,7 @@ export default function Apron({
 
 
 
-    return (
-
-  
+    return (  
   <mesh
             rotation={[THREE.MathUtils.degToRad(rotationX),
                 THREE.MathUtils.degToRad(rotationY),

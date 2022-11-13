@@ -11,7 +11,7 @@ export default function ApronCix({
     useMiddleSupport = false,
 }) {
     const totalLength = length + (pinLength * 2);
-    const attachPointCount = Math.ceil(length / 500);
+    let attachPointCount = Math.ceil(length / 500);
 
     if (useMiddleSupport && attachPointCount % 2 === 1) {
         attachPointCount++;

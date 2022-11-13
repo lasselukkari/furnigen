@@ -1,5 +1,4 @@
 import React from 'react'
-import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber'
 import * as THREE from "three";
 
 const supportShape = (length, height) => {

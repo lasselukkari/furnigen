@@ -5,6 +5,8 @@ import LINE_EP from './types/LINE_EP.js';
 import LINC_EP from './types/LINC_EP.js';	
 import ARC_IPEP from './types/ARC_IPEP.js';
 
+
+
 export default class Geometry {
 	constructor(params) {
 		this.geo = new GEO(params);

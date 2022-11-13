@@ -3,7 +3,6 @@
 import React from 'react'
 import * as THREE from "three";
 
-
 export default function Tabletop({
     x=0,
     y=0,

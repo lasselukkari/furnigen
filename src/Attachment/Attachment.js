@@ -8,9 +8,6 @@ export default function Attachment({
     x,
     y,
     z,
-    length,
-    width,
-    height,
     texture,
 }) {
 

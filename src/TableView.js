@@ -1,9 +1,10 @@
 
 
-import React, { useEffect, useRef, useState } from 'react'
-import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber'
-import { Plane, OrbitControls } from '@react-three/drei'
+import React from 'react'
+import { Canvas, useLoader } from '@react-three/fiber'
+import { OrbitControls } from '@react-three/drei'
 import Apron from './Apron/Apron';
+import Attachment from './Attachment/Attachment';
 import Tabletop from './Tabletop/Tabletop';
 import Leg from './Leg/Leg';
 import CornerSupport from './CornerSupport/CornerSupport';
@@ -19,17 +20,18 @@ export default function TableView({
   legs,
   angleSupports,
   middleSupport,
-  autoRotate= false
+  attachments,
+  autoRotate,
+  zoom,
 }) {
   const texture = useLoader(THREE.TextureLoader, 'wood-saturated-oak-texture.jpeg')
-
 
   return (
 
     <Canvas
 
       shadows
-      camera={{ fov: 15, near: 0.1, far: 1000, position: [3.5, 2, 5]}} frameloop="demand" style={{ width: '100%', height: '100%', position: 'absolute' }}>
+      camera={{ fov: 15, near: 0.1, far: 1000, position: [3.5, 2, 5], zoom: zoom}} frameloop="demand" style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left:0 }}>
 
       <group scale={0.001} >
         {aprons.map(({ x, y, z, length, width, height, rotationY }, index) => {
@@ -43,6 +45,18 @@ export default function TableView({
               length={length}
               width={width}
               height={height}
+              texture={texture}
+            />
+          )
+        })}
+
+                {attachments.map(({ x, y, z, length, width, height, rotationY }, index) => {
+          return (
+            <Attachment
+              key={index}
+              x={x}
+              y={y}
+              z={z}
               texture={texture}
             />
           )
