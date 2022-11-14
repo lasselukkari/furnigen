@@ -8,6 +8,7 @@ export default function ApronCix({
     pinLength,
     pinHeight,
     middleSupportPinLength,
+    attachmentMargin,
     useMiddleSupport = false,
 }) {
     const totalLength = length + (pinLength * 2);
@@ -16,6 +17,18 @@ export default function ApronCix({
     if (useMiddleSupport && attachPointCount % 2 === 1) {
         attachPointCount++;
     }
+
+    const attachmentAreaLength = length - (attachmentMargin * 2);
+    let attachmentStep;
+    let aMargin;
+
+    if(attachPointCount > 1) {
+        attachmentStep = attachmentAreaLength / (attachPointCount-1);
+        aMargin = attachmentMargin;
+      } else {
+        attachmentStep = 0;
+        aMargin = totalLength / 2;
+      }
 
     const cix = new Cix(
         {
@@ -56,8 +69,8 @@ export default function ApronCix({
 
     for (let i = 0; i < attachPointCount; i++) {
         const G1001_1087 = new Geometry({ ID: `G1001.109${i}`, RTY: 2 });
-        G1001_1087.setStartPoint({ X: ((length / (attachPointCount + 1)) * (i + 1)) - 25, Y: width - 16 });
-        G1001_1087.addLineEp({ XE: ((length / (attachPointCount + 1)) * (i + 1)) + 25, YE: width - 16 });
+        G1001_1087.setStartPoint({ X: aMargin + (attachmentStep * i) - 25, Y: width - 16 });
+        G1001_1087.addLineEp({ XE: aMargin + (attachmentStep * i) + 25, YE: width - 16 });
         cix.addGeometry(G1001_1087);
     }
 

@@ -58,8 +58,8 @@ export default class GeometryHelper {
     this.conrnerSupportHeight = 20;
     this.conrnerSupportWidth = apronWidth - 5;
     this.conrnerSupportLength = ((legWidth - apronMargin - apronHeight) * Math.sqrt(2) * 2) + 2 * this.conrnerSupportHeight + 5;
-    if (this.conrnerSupportLength < 100) {
-      this.conrnerSupportLength = 100;
+    if (this.conrnerSupportLength < 150) {
+      this.conrnerSupportLength = 150;
     }
 
     this.addMiddleSupport = tabletopLength > 1600;
@@ -69,12 +69,14 @@ export default class GeometryHelper {
     this.middleSupportPinLength = this.apronHeight - 10;
 
 
-    this.shortApronAattachPointCount = Math.ceil(this.shortApronLength / 500);
-    this.longAprongAttachPointCount = Math.ceil(this.longApronLength / 500);
+    this.shortApronAattachPointCount = Math.ceil(this.shortApronLength / 500) || 1;
+    this.longAprongAttachPointCount = Math.ceil(this.longApronLength / 500) || 1;
 
     if (this.addMiddleSupport && this.longAprongAttachPointCount % 2 === 1) {
       this.longAprongAttachPointCount++;
     }
+
+    this.attachmentMargin = ( this.conrnerSupportLength * (1 / Math.sqrt(2))) - (this.legWidth - this.apronMargin - this.apronHeight) + 35;
 
   }
 
@@ -91,6 +93,7 @@ export default class GeometryHelper {
         width: this.apronWidth,
         height: this.apronHeight,
         pinLength: this.apronPinLength,
+        attachmentMargin: this.attachmentMargin,
 
       },
       {
@@ -102,6 +105,7 @@ export default class GeometryHelper {
         width: this.apronWidth,
         height: this.apronHeight,
         pinLength: this.apronPinLength,
+        attachmentMargin:  this.attachmentMargin,
       },
       {
         x: this.legMargin + this.apronCenterMargin - this.halfTopWidth,
@@ -111,6 +115,7 @@ export default class GeometryHelper {
         width: this.apronWidth,
         height: this.apronHeight,
         pinLength: this.apronPinLength,
+        attachmentMargin:  this.attachmentMargin,
       },
       {
         x: this.halfTopWidth - this.apronCenterMargin - this.legMargin,
@@ -120,6 +125,7 @@ export default class GeometryHelper {
         width: this.apronWidth,
         height: this.apronHeight,
         pinLength: this.apronPinLength,
+        attachmentMargin:  this.attachmentMargin,
       }
     ]
   }
@@ -233,17 +239,23 @@ export default class GeometryHelper {
 
   attachments() {
     const attachments = [];
-    const margin = ( this.conrnerSupportLength * (1 / Math.sqrt(2))) - (this.legWidth - this.apronMargin - this.apronHeight) + 35;
-    const longApronFreeLength = this.longApronLength - (margin * 2);
-    const longApronStart = -longApronFreeLength / 2;
-    const longApronStep = longApronFreeLength / (this.longAprongAttachPointCount-1);
+    const longApronFreeLength = this.longApronLength - (this.attachmentMargin * 2);
+    let longApronStart = -longApronFreeLength / 2;
+    let longApronStep;
+
+    if(this.longAprongAttachPointCount > 1) {
+      longApronStep = longApronFreeLength / (this.longAprongAttachPointCount-1);
+    } else {
+      longApronStart = 0;
+      longApronStep = 0;
+    }
 
 
     for (let i = 0; i < this.longAprongAttachPointCount; i++) {
       attachments.push({
         x: this.halfTopWidth - this.legMargin - this.apronMargin - this.apronHeight-25,
         y: longApronStart + longApronStep * i,
-        z: this.legLength / 2,
+        z: (this.legLength / 2) - (19/2),
       })
     }
 
@@ -251,20 +263,26 @@ export default class GeometryHelper {
       attachments.push({
         x: -this.halfTopWidth + this.legMargin + this.apronMargin + this.apronHeight+25,
         y: longApronStart + longApronStep * i,
-        z: this.legLength / 2,
+        z: (this.legLength / 2) - (19/2),
       })
     }
 
-    const shortApronFreeLength = this.shortApronLength - (margin * 2);
-    console.log(shortApronFreeLength);
-    const shortApronStart = -shortApronFreeLength / 2;
-    const shortApronStep = shortApronFreeLength / (this.shortApronAattachPointCount-1);
+    const shortApronFreeLength = this.shortApronLength - (this.attachmentMargin * 2);
+    let shortApronStart = -shortApronFreeLength / 2;
+    let shortApronStep = shortApronFreeLength / (this.shortApronAattachPointCount-1);
+
+    if(this.shortApronAattachPointCount > 1) {
+      shortApronStep = shortApronFreeLength / (this.shortApronAattachPointCount-1);
+    } else {
+      shortApronStart = 0;
+      shortApronStep = 0;
+    }
 
     for (let i = 0; i < this.shortApronAattachPointCount; i++) {
       attachments.push({
         x: shortApronStart + shortApronStep * i,
         y: this.halfTopLength - this.legMargin - this.apronMargin - this.apronHeight-25,
-        z: this.legLength / 2,
+        z: (this.legLength / 2) - (19/2),
       })
     }
 
@@ -272,7 +290,7 @@ export default class GeometryHelper {
       attachments.push({
         x: shortApronStart + shortApronStep * i,
         y: -this.halfTopLength + this.legMargin + this.apronMargin + this.apronHeight+25,
-        z: this.legLength / 2,
+        z: (this.legLength / 2) - (19/2),
       })
     }
 
