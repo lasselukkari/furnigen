@@ -31,6 +31,7 @@ export default function TabletopCix({
     GID: "G1001.1001",
     Z: 0,
     DP: 5,
+    THR: 1,
     CRC: 2,
     RV: 1,
     CKA: 2,

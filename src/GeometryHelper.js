@@ -69,11 +69,15 @@ export default class GeometryHelper {
     this.middleSupportPinLength = this.apronHeight - 10;
 
 
-    this.shortApronAattachPointCount = Math.ceil(this.shortApronLength / 500) || 1;
-    this.longAprongAttachPointCount = Math.ceil(this.longApronLength / 500) || 1;
+    this.shortApronAattachPointCount = Math.ceil(this.shortApronLength / 600) || 1;
+    this.longAprongAttachPointCount = Math.ceil(this.longApronLength / 600) || 1;
 
     if (this.addMiddleSupport && this.longAprongAttachPointCount % 2 === 1) {
       this.longAprongAttachPointCount++;
+    }
+
+    if (this.shortApronAattachPointCount % 2 !== 1) {
+      this.shortApronAattachPointCount++;
     }
 
     this.attachmentMargin = ( this.conrnerSupportLength * (1 / Math.sqrt(2))) - (this.legWidth - this.apronMargin - this.apronHeight) + 35;
@@ -93,7 +97,6 @@ export default class GeometryHelper {
         width: this.apronWidth,
         height: this.apronHeight,
         pinLength: this.apronPinLength,
-        attachmentMargin: this.attachmentMargin,
 
       },
       {
@@ -105,7 +108,6 @@ export default class GeometryHelper {
         width: this.apronWidth,
         height: this.apronHeight,
         pinLength: this.apronPinLength,
-        attachmentMargin:  this.attachmentMargin,
       },
       {
         x: this.legMargin + this.apronCenterMargin - this.halfTopWidth,
@@ -115,7 +117,6 @@ export default class GeometryHelper {
         width: this.apronWidth,
         height: this.apronHeight,
         pinLength: this.apronPinLength,
-        attachmentMargin:  this.attachmentMargin,
       },
       {
         x: this.halfTopWidth - this.apronCenterMargin - this.legMargin,
@@ -125,7 +126,6 @@ export default class GeometryHelper {
         width: this.apronWidth,
         height: this.apronHeight,
         pinLength: this.apronPinLength,
-        attachmentMargin:  this.attachmentMargin,
       }
     ]
   }
@@ -161,6 +161,7 @@ export default class GeometryHelper {
         height: this.legWidth,
         slotDepth: this.legSlotDepth,
         slotLength: this.apronPinWidth,
+
       },
       {
         x: this.halfTopWidth - this.legCenterMargin,
@@ -294,6 +295,14 @@ export default class GeometryHelper {
       })
     }
 
+    if(this.addMiddleSupport) {
+      attachments.push({
+        x: 0,
+        y: 25 + (this.middleSupportHeight / 2),
+        z: (this.legLength / 2) - (19/2),
+    })
+    }
+
     return attachments;
   }
 
@@ -337,11 +346,12 @@ export default class GeometryHelper {
         cix: () => ApronCix({
           height: this.apronHeight,
           width: this.apronWidth,
-          length: this.tabletopWidth - this.twoLegWidthAndMargin,
+          length: this.tabletopLength - this.twoLegWidthAndMargin,
           pinLength: this.apronPinLength,
           pinHeight: this.apronPinHeight,
           middleSupportPinLength: this.middleSupportPinLength,
           useMiddleSupport: this.addMiddleSupport,
+          attachmentMargin: this.attachmentMargin,
         })
       },
       {
@@ -356,6 +366,8 @@ export default class GeometryHelper {
           length: this.tabletopWidth - this.twoLegWidthAndMargin,
           pinLength: this.apronPinLength,
           pinHeight: this.apronPinHeight,
+          attachmentMargin: this.attachmentMargin,
+          forceUnevenEven: true,
         })
       },
       {

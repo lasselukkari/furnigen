@@ -10,11 +10,17 @@ export default function ApronCix({
     middleSupportPinLength,
     attachmentMargin,
     useMiddleSupport = false,
+    forceUnevenEven = false,
 }) {
+    console.log(attachmentMargin);
     const totalLength = length + (pinLength * 2);
-    let attachPointCount = Math.ceil(length / 500);
+    let attachPointCount = Math.ceil(length / 600);
 
     if (useMiddleSupport && attachPointCount % 2 === 1) {
+        attachPointCount++;
+    }
+
+    if (forceUnevenEven && attachPointCount % 2 !== 1) {
         attachPointCount++;
     }
 
@@ -24,7 +30,7 @@ export default function ApronCix({
 
     if(attachPointCount > 1) {
         attachmentStep = attachmentAreaLength / (attachPointCount-1);
-        aMargin = attachmentMargin;
+        aMargin = attachmentMargin + pinLength;
       } else {
         attachmentStep = 0;
         aMargin = totalLength / 2;

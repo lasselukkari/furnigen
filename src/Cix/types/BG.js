@@ -46,7 +46,7 @@ export default class BG {
         LAY = 'Layer 0',
         ID,
         SIDE = 0,
-        CRN = '',
+        CRN = '1',
         X = 0,
         Y = 0,
         Z = 0,

@@ -1,7 +1,6 @@
 
 
-import React, { useEffect, useRef, useState } from 'react'
-import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber'
+import React from 'react'
 import * as THREE from "three";
 
 export default function Attachment({
@@ -11,6 +10,9 @@ export default function Attachment({
     texture,
 }) {
 
+    const rotatedTexture = texture.clone();
+    rotatedTexture.flipY = false;
+
     return (
         <mesh
             shadows
@@ -19,7 +21,8 @@ export default function Attachment({
         >
             <boxGeometry args={[49, 19, 49]} />
             <meshStandardMaterial transparent={true}
-                map={texture}
+                map={rotatedTexture}
+                
                 attach="material" />
         </mesh>
     )

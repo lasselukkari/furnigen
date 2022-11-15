@@ -16,17 +16,30 @@ export default function Leg({
   rotationZ = 0,
 }) {
 
+  const rotatedTexture = texture.clone();
+
+  rotatedTexture.rotation = THREE.MathUtils.degToRad(90);
+
+  rotatedTexture.repeat.set(0.07, 1);
+
   return (
     <mesh
-      shadows
-      castShadow
+
       position={[x, y, z]}
       rotation={[THREE.MathUtils.degToRad(rotationX),
       THREE.MathUtils.degToRad(rotationY),
       THREE.MathUtils.degToRad(rotationZ)]}
     >
       <boxGeometry args={[width, height, length]} />
-      <meshStandardMaterial transparent={true} map={texture} attach="material" />
+      <meshStandardMaterial attach="material-0" map={texture} />
+
+      <meshStandardMaterial attach="material-1" map={rotatedTexture} />
+      <meshStandardMaterial attach="material-2" map={texture} />
+      <meshStandardMaterial attach="material-3" map={texture} />
+      <meshStandardMaterial attach="material-4" map={texture} />
+      <meshStandardMaterial attach="material-5" map={texture} />
+
+
     </mesh>
   )
 }

@@ -1,7 +1,7 @@
 
 
-import React from 'react'
-import { Canvas, useLoader } from '@react-three/fiber'
+import React, {Suspense} from 'react'
+import { Canvas,  useLoader } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import Apron from './Apron/Apron';
 import Attachment from './Attachment/Attachment';
@@ -115,14 +115,10 @@ export default function TableView({
         />
       </group>
 
-      <spotLight position={[5, 5, 5]} angle={0.7} penumbra={1} castShadow />
-      <spotLight position={[-5, -5, -5]} angle={0.7} penumbra={1} castShadow />
-      <directionalLight
-        intensity={0.5}
-        castShadow
-        shadow-mapSize-height={512}
-        shadow-mapSize-width={512}
-      />
+      <spotLight position={[5, 5, 5]} angle={0.8} intensity={0.6} penumbra={1} castShadow />
+      <spotLight position={[-5, -5, -5]} angle={0.8} intensity={0.3} penumbra={1} castShadow />
+
+      <ambientLight intensity={0.2} />
       <OrbitControls autoRotate={autoRotate} />
 {/*       <primitive object={new THREE.AxesHelper(10)} /> */}
     </Canvas>

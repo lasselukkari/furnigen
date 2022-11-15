@@ -6,19 +6,18 @@ export default function CornerSupportCix({
   length,
 }) {
 
+  const TOOL_DIAMETER = 14.54;
+
   const cix = new Cix(
     {
       "xml": "'xml':<?xml version=\"1.0\" encoding=\"utf-8\" ?>\r\n\t'xml':<!-- Created by bSolid -->\r\n\t'xml':<bSolid>\r\n\t'xml':\t<Settings \r\n\t'xml':\t\tMultiPanelEnabled=\"0\"\r\n\t'xml':\t\tMultiPanelOrigin=\"1\"\r\n\t'xml':\t/>\r\n\t'xml':\t<Panel>\r\n\t'xml':\t\t<MachinePosition \r\n\t'xml':\t\t\tEXORIGIN=\"1\"\r\n\t'xml':\t\t\tEXREFCORNER=\"1\"\r\n\t'xml':\t\t\tEXOFFSETX=\"0\"\r\n\t'xml':\t\t\tEXOFFSETY=\"0\"\r\n\t'xml':\t\t\tEXOFFSETZ=\"0\"\r\n\t'xml':\t\t\tEXROTX=\"0\"\r\n\t'xml':\t\t\tEXROTY=\"0\"\r\n\t'xml':\t\t\tEXROTZ=\"0\"\r\n\t'xml':\t\t\tEXMIRRORX=\"0\"\r\n\t'xml':\t\t\tEXMIRRORY=\"0\"\r\n\t'xml':\t\t/>\r\n\t'xml':\t</Panel>\r\n\t'xml':</bSolid>\r",
-      "LPX": `${width * 2} + TOOL_DIAMETER`,
+      "LPX": `${width * 2} + ${TOOL_DIAMETER}`,
       "LPY": length,
       "LPZ": 20,
       "ORLST": "5",
       "FCN": 1
     });
 
-  cix.addPublicVars({
-    "TOOL_DIAMETER": 14.45,
-  });
 
   cix.addOffset({
     X: 3,
@@ -29,8 +28,8 @@ export default function CornerSupportCix({
   const G1001_1001 = new Geometry({ ID: "G1001.1001", CRN: "2", RTY: 2 });
   G1001_1001.setStartPoint({ X: 0, Y: length });
   G1001_1001.addLineEp({ ID: 100, XE: 0, YE: 0, ZE: 0, MVT: 0 });
-  G1001_1001.addLineEp({ ID: 101, XE: `${width * 2} + TOOL_DIAMETER`, YE: 0, ZE: 0, MVT: 0 });
-  G1001_1001.addLineEp({ ID: 102, XE: `${width * 2} + TOOL_DIAMETER`, YE: length, ZE: 0, MVT: 0 });
+  G1001_1001.addLineEp({ ID: 101, XE: `${width * 2} + ${TOOL_DIAMETER}`, YE: 0, ZE: 0, MVT: 0 });
+  G1001_1001.addLineEp({ ID: 102, XE: `${width * 2} + ${TOOL_DIAMETER}`, YE: length, ZE: 0, MVT: 0 });
   G1001_1001.addLineEp({ ID: 103, XE: 0, YE: length, ZE: 0, MVT: 0 });
   cix.addGeometry(G1001_1001);
 
@@ -110,7 +109,7 @@ export default function CornerSupportCix({
   cix.addBg({
     ID: "P1011",
     CRN: "1,4,3,2",
-    X: "(LPX - TOOL_DIAMETER) / 4",
+    X: `(LPX - ${TOOL_DIAMETER}) / 4`,
     Y: 40,
     Z: -5,
     DP: 15,

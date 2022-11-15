@@ -3,11 +3,13 @@ import Geometry from '../Cix/Geometry';
 
 export default function AttachmentCix() {
 
+    const TOOL_DIAMETER = 14.54;
+
     const cix = new Cix(
         {
             "xml": "'xml':<?xml version=\"1.0\" encoding=\"utf-8\" ?>\r\n\t'xml':<!-- Created by bSolid -->\r\n\t'xml':<bSolid>\r\n\t'xml':\t<Settings \r\n\t'xml':\t\tMultiPanelEnabled=\"0\"\r\n\t'xml':\t\tMultiPanelOrigin=\"1\"\r\n\t'xml':\t/>\r\n\t'xml':\t<Panel>\r\n\t'xml':\t\t<MachinePosition \r\n\t'xml':\t\t\tEXORIGIN=\"1\"\r\n\t'xml':\t\t\tEXREFCORNER=\"1\"\r\n\t'xml':\t\t\tEXOFFSETX=\"0\"\r\n\t'xml':\t\t\tEXOFFSETY=\"0\"\r\n\t'xml':\t\t\tEXOFFSETZ=\"0\"\r\n\t'xml':\t\t\tEXROTX=\"0\"\r\n\t'xml':\t\t\tEXROTY=\"0\"\r\n\t'xml':\t\t\tEXROTZ=\"0\"\r\n\t'xml':\t\t\tEXMIRRORX=\"0\"\r\n\t'xml':\t\t\tEXMIRRORY=\"0\"\r\n\t'xml':\t\t/>\r\n\t'xml':\t</Panel>\r\n\t'xml':</bSolid>\r",
-            "LPX": "(49 * 3) + (TOOL_DIAMETER * 2)",
-            "LPY": "59 + 59 + TOOL_DIAMETER",
+            "LPX": `(49 * 3) + (${TOOL_DIAMETER} * 2)`,
+            "LPY": `59 + 59 + ${TOOL_DIAMETER}`,
             "LPZ": 19,
             "ORLST": "5",
             "FCN": 1
@@ -72,7 +74,7 @@ export default function AttachmentCix() {
         CKA: 3,
         RTY: 2,
         NRP: 3,
-        DX: "49 + TOOL_DIAMETER",
+        DX: `49 + ${TOOL_DIAMETER}`,
         OPT: 1,
         RMD: 1,
         TOS: 1,
@@ -83,14 +85,14 @@ export default function AttachmentCix() {
     cix.addBg({
         ID: "P1017",
         X: "49/2",
-        Y: "(10 + (49/2))+(49 + TOOL_DIAMETER)",
+        Y: `(10 + (49/2))+(49 + ${TOOL_DIAMETER})`,
         Z: 0,
         DP: 7,
         TNM: "VTERA_90AST",
         CKA: 3,
         RTY: 2,
         NRP: 3,
-        DX: "49 + TOOL_DIAMETER",
+        DX: `49 + ${TOOL_DIAMETER}`,
         OPT: 1,
         RMD: 1,
         TOS: 1,
@@ -108,7 +110,7 @@ export default function AttachmentCix() {
         CKA: 3,
         RTY: 2,
         NRP: 3,
-        DX: "49 + TOOL_DIAMETER",
+        DX: `49 + ${TOOL_DIAMETER}`,
         OPT: 1,
         RMD: 1,
         TOS: 1,
@@ -119,14 +121,14 @@ export default function AttachmentCix() {
     cix.addBg({
         ID: "P1017",
         X: "49/2",
-        Y: "(10 + (49/2))+(49 + TOOL_DIAMETER)",
+        Y: `(10 + (49/2))+(49 + ${TOOL_DIAMETER})`,
         Z: 0,
         DP: 14,
         TNM: "SPIRAALI-4-Z1-UP",
         CKA: 3,
         RTY: 2,
         NRP: 3,
-        DX: "49 + TOOL_DIAMETER",
+        DX: `49 + ${TOOL_DIAMETER}`,
         OPT: 1,
         RMD: 1,
         TOS: 1,

@@ -51,7 +51,7 @@ export default function TableGenerator() {
       label: 'Width',
       value: 70,
       min: 65,
-      max: 120,
+      max: 100,
       step: 1,
     },
     legMargin: {
@@ -75,7 +75,7 @@ export default function TableGenerator() {
       label: 'Margin',
       value: 10,
       min: 3,
-      max: (legWidth / 2) - (apronHeight / 2) - 3,
+      max: (legWidth / 2),
       step: 1,
     }
   }))
@@ -91,26 +91,26 @@ export default function TableGenerator() {
       
       if (v === '6 person') {
         setTabletop({ tabletopHeigth: 28, tabletopWidth: 850, tabletopLength: 1600 })
-        setLegs({ legLength: 725, legWidth: 80, legMargin: 55 })
-        setAprons({ apronWidth: 80, apronMargin: 10 })
+        setLegs({ legLength: 730, legWidth: 75, legMargin: 55 })
+        setAprons({ apronWidth: 85, apronMargin: 15 })
       }
 
       if (v === '8 person') {
         setTabletop({ tabletopHeigth: 32, tabletopWidth: 900, tabletopLength: 2200 })
-        setLegs({ legLength: 735, legWidth: 80, legMargin: 55 })
-        setAprons({ apronWidth: 100, apronMargin: 10 })
+        setLegs({ legLength: 735, legWidth: 85, legMargin: 55 })
+        setAprons({ apronWidth: 90, apronMargin: 20 })
       }
 
       if (v === 'Sofa table') {
-        setTabletop({ tabletopHeigth: 25, tabletopWidth: 700, tabletopLength: 1200 })
-        setLegs({ legLength: 400, legWidth: 80, legMargin: 15 })
-        setAprons({ apronWidth: 95, apronMargin: 10 })
+        setTabletop({ tabletopHeigth: 25, tabletopWidth: 700, tabletopLength: 1400 })
+        setLegs({ legLength: 350, legWidth: 80, legMargin: 15 })
+        setAprons({ apronWidth: 80, apronMargin: 10 })
       }
 
       if (v === 'Bar table') {
         setTabletop({ tabletopHeigth: 25, tabletopWidth: 700, tabletopLength: 1200 })
-        setLegs({ legLength: 1050, legWidth: 90, legMargin: 3 })
-        setAprons({ apronWidth: 90, apronMargin: 3})
+        setLegs({ legLength: 1050, legWidth: 90, legMargin: 10 })
+        setAprons({ apronWidth: 120, apronMargin: 25})
       }
     }, },
   });
@@ -131,7 +131,7 @@ export default function TableGenerator() {
     const zip = new JSZip();
     parts.forEach(({ name, cix }) => zip.file(`${name}.cix`, cix()));
     const content = await zip.generateAsync({ type: 'blob' });
-    FileSaver.saveAs(content, `Table ${new Date().toLocaleString().replaceAll('/', '-').replaceAll(':', '-').replaceAll(', ', ' ')}.cix`);
+    FileSaver.saveAs(content, `Table ${new Date().toLocaleString().replaceAll('/', '-').replaceAll(':', '-').replaceAll(', ', ' ')}.zip`);
   }
 
   return (
