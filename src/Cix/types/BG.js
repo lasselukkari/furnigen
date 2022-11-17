@@ -60,6 +60,9 @@ export default class BG {
         AZ = 0,
         AR = 0,
         RTY = 0,
+        NRP=0,
+        DX=0,
+        DY=0,
         OPT = 0,
         RSP = 0,
         IOS = 0,
@@ -98,6 +101,9 @@ export default class BG {
         this.AZ = AZ;
         this.AR = AR;
         this.RTY = RTY;
+        this.NRP = NRP;
+        this.DX = DX;
+        this.DY = DY;
         this.OPT = OPT;
         this.RSP = RSP;
         this.IOS = IOS;
@@ -140,6 +146,9 @@ BEGIN MACRO
 \tPARAM,NAME=AZ,VALUE=${this.AZ}
 \tPARAM,NAME=AR,VALUE=${this.AR}
 \tPARAM,NAME=RTY,VALUE=${this.RTY}
+\tPARAM,NAME=NRP,VALUE=${this.NRP}
+\tPARAM,NAME=DX,VALUE=${this.DX}
+\tPARAM,NAME=DY,VALUE=${this.DY}
 \tPARAM,NAME=OPT,VALUE=${this.OPT}
 \tPARAM,NAME=RSP,VALUE=${this.RSP}
 \tPARAM,NAME=IOS,VALUE=${this.IOS}

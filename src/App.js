@@ -1,7 +1,7 @@
 
 
 import React from 'react'
-import TableGenerator from './TableGenerator';
+import TableGenerator from './Table/TableGenerator';
 import { Leva } from 'leva'
 
 
