@@ -1,7 +1,8 @@
 
 
 import React from 'react'
-import TableGenerator from './Table/TableGenerator';
+//import Table from './Table/Table';
+import Gate from './Gate/Gate';
 import { Leva } from 'leva'
 
 
@@ -13,7 +14,7 @@ export default function App() {
       titleBar={{ filter: false, title: "Dimensions" }} 
       hideCopyButton={true}
       />
-      <TableGenerator />
+      <Gate />
     </div>
   )
 }
