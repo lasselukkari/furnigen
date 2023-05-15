@@ -12,7 +12,7 @@ A 5-axis CNC machine is a technologically advanced tool that enables precise and
 
 The benefits of automating custom furniture manufacturing are numerous. Customers can enjoy furniture pieces that are tailored to their specific requirements and preferences, adding a personal touch to their living spaces. This customization opens up opportunities for creativity and individuality in design.
 
-The software itself enables users to create a 3D model of a wooden kitchen table by defining key dimensions. This user-friendly interface allows for easy customization, empowering individuals to design their ideal table. Once the dimensions are specified, the software generates CNC programs for all the necessary components, including the tabletop, legs, aprons, corner supports, and tabletop attachments.
+The software itself enables users to create a 3D model of a wooden kitchen table by defining key dimensions. This user-friendly interface allows for easy customization, empowering individuals to design their ideal table. Once the dimensions are specified, the software generates CNC programs for all the necessary components, including the tabletop, legs, aprons, corner supports and tabletop attachments.
 
 The software adheres to traditional woodworking best practices, employing time-tested wood joints for structural integrity and durability. By incorporating these tried-and-true techniques, the software ensures the production of high-quality furniture pieces.
 
