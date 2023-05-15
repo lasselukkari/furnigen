@@ -7,7 +7,7 @@ This software was created as part of a vocational school course. The name of the
 The goal of this proof of concept software is to explore the potential for automating the production of custom wooden furniture. By leveraging the capabilities of a 5-axis CNC machine, the software aims to streamline the manufacturing process and enhance efficiency in creating bespoke furniture pieces.
 
 A 5-axis CNC machine is a technologically advanced tool that enables precise and intricate woodworking operations. It has a rich history, evolving from the early development of Computer Numerical Control (CNC) machines. The introduction of 5-axis machines expanded the possibilities for woodworking, allowing for complex operations with exceptional accuracy.
-<img src="https://i.imgur.com/DFesBcq.png" width="640"> <br>
+<img src="https://i.imgur.com/DFesBcq.png" width="100%"> <br>
 > *Biesse Rover A 5-axis CNC machine*
 
 The benefits of automating custom furniture manufacturing are numerous. Customers can enjoy furniture pieces that are tailored to their specific requirements and preferences, adding a personal touch to their living spaces. This customization opens up opportunities for creativity and individuality in design.
