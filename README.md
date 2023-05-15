@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+Proof of Concept Software for Automated Custom Wooden Furniture Manufacturing
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="https://i.imgur.com/4susdSP.gif" width="640">
 
-## Available Scripts
+This software was created as part of a vocational school course. The name of the course could be translated from Finnish to "Manufacturing of a carpenter's custom order product." The software can be found online at https://lasselukkari.github.io/furnigen/. While the tool is fully functional, it should be considered an early prototype. The code quality isn't up to standards, and it does not follow best practices in general.
 
-In the project directory, you can run:
+The goal of this proof of concept software is to explore the potential for automating the production of custom wooden furniture. By leveraging the capabilities of a 5-axis CNC machine, the software aims to streamline the manufacturing process and enhance efficiency in creating bespoke furniture pieces.
 
-### `npm start`
+A 5-axis CNC machine is a technologically advanced tool that enables precise and intricate woodworking operations. It has a rich history, evolving from the early development of Computer Numerical Control (CNC) machines. The introduction of 5-axis machines expanded the possibilities for woodworking, allowing for complex operations with exceptional accuracy.
+<img src="https://i.imgur.com/DFesBcq.png" width="640"> <br>
+> *Biesse Rover A 5-axis CNC machine*
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The benefits of automating custom furniture manufacturing are numerous. Customers can enjoy furniture pieces that are tailored to their specific requirements and preferences, adding a personal touch to their living spaces. This customization opens up opportunities for creativity and individuality in design.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The software itself enables users to create a 3D model of a wooden kitchen table by defining key dimensions. This user-friendly interface allows for easy customization, empowering individuals to design their ideal table. Once the dimensions are specified, the software generates CNC programs for all the necessary components, including the tabletop, legs, aprons, corner supports, and tabletop attachments.
 
-### `npm test`
+The software adheres to traditional woodworking best practices, employing time-tested wood joints for structural integrity and durability. By incorporating these tried-and-true techniques, the software ensures the production of high-quality furniture pieces.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Developed using the JavaScript programming language, the software operates entirely within a web browser, providing a convenient and accessible platform. The user interface is designed with simplicity in mind, utilizing React and three.js for intuitive navigation and visualization of the 3D model.
 
-### `npm run build`
+Upon completion, the software generates CNC programs in a proprietary file format known as .CIX. This format is specifically designed for CNC machines manufactured by Biesse, ensuring compatibility between the software and the manufacturing equipment. The CNC programs serve as detailed instructions for the CNC machine, guiding it through precise cutting and shaping operations for each wooden component.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+While the software's focus is on custom kitchen tables, its potential extends to other furniture items such as kitchen cupboards, bookshelves, and loudspeaker enclosures. This opens up possibilities for diverse and customizable furniture manufacturing.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+In terms of business models, various options can be explored. Direct sales to end-users provide customers with the opportunity to order custom furniture directly through the software platform. The software could also be licensed to other companies interested in integrating automated manufacturing processes into their operations. Another potential model involves establishing a network of approved manufacturers who pay a share to utilize the software and offer custom furniture manufacturing services.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+During development, a key aspect was creating a parser for existing .CIX files, allowing for seamless integration and customization. These files were converted into JavaScript code, and templates were parametrized to incorporate dimensions from the user-defined 3D model. Key dimensions such as leg height, table width, table length, tabletop thickness, leg width, leg margin, and apron height were accurately integrated into the parametrized templates.
 
-### `npm run eject`
+In conclusion, this proof of concept software represents a step toward automating custom wooden furniture manufacturing. By utilizing 5-axis CNC technology, adhering to traditional woodworking practices, and providing a user-friendly browser-based interface, the software demonstrates the potential for efficient and personalized furniture production.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Example project create with the software
+<img src="https://i.imgur.com/juUUv9x.png" width="640">
+<img src="https://i.imgur.com/v8WO6BB.png" width="640">
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img src="https://i.imgur.com/vsNv0lu.png" width="640">
+<img src="https://i.imgur.com/la3Xexs.png" width="640">
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
