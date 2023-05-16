@@ -30,7 +30,7 @@ In conclusion, this proof of concept software represents a step toward automatin
 
 ## Example table project
 <img src="https://i.imgur.com/oTpiixk.png" width="640">
-<img src="https://i.imgur.com/v8WO6BB.png" width="640">
+<img src="https://i.imgur.com/YxWXn1i.png" width="640">
 
 <img src="https://i.imgur.com/vsNv0lu.png" width="640">
 <img src="https://i.imgur.com/la3Xexs.png" width="640">
