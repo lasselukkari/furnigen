@@ -29,7 +29,7 @@ During development, a key aspect was creating a parser for existing .CIX files, 
 In conclusion, this proof of concept software represents a step toward automating custom wooden furniture manufacturing. By utilizing 5-axis CNC technology, adhering to traditional woodworking practices, and providing a user-friendly browser-based interface, the software demonstrates the potential for efficient and personalized furniture production.
 
 ## Example table project
-<img src="https://i.imgur.com/juUUv9x.png" width="640">
+<img src="https://i.imgur.com/oTpiixk.png" width="640">
 <img src="https://i.imgur.com/v8WO6BB.png" width="640">
 
 <img src="https://i.imgur.com/vsNv0lu.png" width="640">
