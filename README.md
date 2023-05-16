@@ -2,7 +2,7 @@ Proof of Concept Software for Automated Custom Wooden Furniture Manufacturing
 
 <img src="https://i.imgur.com/4susdSP.gif" width="640">
 
-This software was created as part of a vocational school course. The name of the course could be translated from Finnish to "Manufacturing of a carpenter's custom order product." The software can be found online at https://lasselukkari.github.io/furnigen/. While the tool is fully functional, it should be considered an early prototype. The code quality isn't up to standards, and it does not follow best practices in general.
+This software was created as part of a vocational school course. The name of the course could be translated from Finnish to "Manufacturing of a carpenter's custom order product." The software can be found online at https://lasselukkari.github.io/furnigen. While the tool is fully functional, it should be considered an early prototype. The code quality isn't up to standards, and it does not follow best practices in general.
 
 The goal of this proof of concept software is to explore the potential for automating the production of custom wooden furniture. By leveraging the capabilities of a 5-axis CNC machine, the software aims to streamline the manufacturing process and enhance efficiency in creating bespoke furniture pieces.
 
