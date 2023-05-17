@@ -1,3 +1,5 @@
+# Furnigen
+
 Proof of Concept Software for Automated Custom Wooden Furniture Manufacturing
 
 <img src="https://i.imgur.com/4susdSP.gif" width="640">
